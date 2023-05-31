@@ -178,7 +178,6 @@ h2 {
 }
 
 #info-modal {
-    display: flex;
     overflow: scroll;
 }
 
