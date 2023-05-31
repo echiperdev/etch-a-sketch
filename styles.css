@@ -25,7 +25,7 @@ background: radial-gradient(circle, rgba(224,229,236,1) 0%, rgba(199,207,217,1) 
 }
 
 .title {
-    margin: 1.5rem 10px;
+    margin: 1rem 10px;
     display: flex;
     justify-content: center;
     font-family: 'Nunito Snas', sans-serif;
