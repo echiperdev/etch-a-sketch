@@ -240,9 +240,14 @@ body {
     border-bottom-left-radius: 4px;
     padding: .5rem;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: rgba(182,210,229,0.4);
+}
+
+.description > p {
+    line-height: 1.5;
 }
 
 @media screen and (max-width: 820px) {
