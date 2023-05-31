@@ -29,7 +29,7 @@ h2 {
     color: whitesmoke;
 }
 
-.header {
+.header, .grid-container, .grid-header {
     margin: .5rem;
     padding: 0 .5rem;
     display: flex;
@@ -316,19 +316,16 @@ h2 {
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    background-color: #e0e5ec;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    -webkit-tap-highlight-color: transparent;
-    box-shadow:
-    -7px -7px 20px 0px #fff9,
-    -4px -4px 5px 0px #fff9,
-    7px 7px 20px 0px #0002,
-    4px 4px 5px 0px #0001,
-    inset 0px 0px 0px 0px #fff9,
-    inset 0px 0px 0px 0px #0001,
-    inset 0px 0px 0px 0px #fff9,
-    inset 0px 0px 0px 0px #0001;
-    transition:box-shadow 0.6s cubic-bezier(.79,.21,.06,.81);
+}
+
+.grid-header {
+    width: 100%;
+    height: fit-content;
+    padding: .5rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
 }
 
 @media screen and (max-width: 820px) {
