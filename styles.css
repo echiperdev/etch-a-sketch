@@ -17,32 +17,11 @@ body {
 }
 
 .header {
-    width: 100%;
-    padding-top: .5rem;
+    margin: .5rem;
+    padding: 0 .5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
-}
-
-.title {
-    margin: .5rem 1rem;
-    display: flex;
-    justify-content: center;
-    font-family: 'Nunito Snas', sans-serif;
-    font-weight: 900;
-    font-size: 1.5rem;
-    color: #2c3a4e;
-}
-
-.app-manager {
-    margin: .5rem 1rem;
-    padding: .5rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    gap: 1rem;
     position: relative;
     background-color: #e0e5ec;
     box-shadow:
@@ -55,11 +34,29 @@ body {
     inset 0px 0px 0px 0px #fff9,
     inset 0px 0px 0px 0px #0001;
     transition:box-shadow 0.6s cubic-bezier(.79,.21,.06,.81);
-    border-radius: 10px;;
+    border-radius: 10px;
 }
 
-.toolbar, .modal-btns {
-    margin-right: .5rem;
+.title {
+    margin: .5rem;
+    display: flex;
+    justify-content: center;
+    font-family: 'Nunito Snas', sans-serif;
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: #2c3a4e;
+}
+
+.app-manager {
+    padding: .5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1rem;
+}
+
+.toolbar {
     padding: .3rem;
     display: flex;
     justify-content: center;
@@ -67,7 +64,14 @@ body {
     gap: 1rem;
 }
 
-.clr-slct, .tip-slct, .ers-slct, .plt.slct {
+.modal-btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.clr-slct, .tip-slct, .ers-slct, .plt-slct {
     position: relative;
     display: inline-block;
 }
@@ -100,6 +104,17 @@ body {
     inset 0px 0px 0px 0px #fff9,
     inset 0px 0px 0px 0px #0001;
     transition:box-shadow 0.6s cubic-bezier(.79,.21,.06,.81);
+}
+
+.tip-slct:hover .tips-content,
+.ers-slct:hover .ers-content,
+.plt-slct:hover .plt-content {
+    padding-top: .5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
 }
 
 .btn:active {
