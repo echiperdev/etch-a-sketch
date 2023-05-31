@@ -24,11 +24,12 @@ background: radial-gradient(circle, rgba(224,229,236,1) 0%, rgba(199,207,217,1) 
     position: relative;
 }
 
-.header:before {
-    position: absolute;
-    content: "";
-    width: 99%;
-    bottom: -10px;
-    height: 2px;
-    background-color: orange;
+.title {
+    margin: 1.5rem 10px;
+    display: flex;
+    justify-content: center;
+    font-family: 'Nunito Snas', sans-serif;
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: #2c3a4e;
 }
