@@ -276,4 +276,19 @@ body {
     .modal-btns {
         gap: 6px;
     }
+
+    .info-content {
+        width: 90%;
+    }
+
+    .info-body {
+        height: 80vh;
+        padding: 1.5rem;
+        overflow: scroll;
+        justify-content: flex-start;
+    }
+
+    .socials {
+        width: 90%;
+    }
 }
