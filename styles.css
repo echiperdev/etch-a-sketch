@@ -251,6 +251,10 @@ body {
     line-height: 1.5;
 }
 
+.description > ul {
+    list-style: none;
+}
+
 .socials {
     width: 50%;
     margin: 1rem 0;
@@ -260,6 +264,13 @@ body {
 
 .fab, .far {
     font-size: 1.5rem;
+}
+
+.hide-info, .hide-modal, .hide-props {
+    color: whitesmoke;
+    float: right;
+    font-size: 3rem;
+    font-weight: 300;
 }
 
 @media screen and (max-width: 820px) {
