@@ -29,7 +29,7 @@ h2 {
     color: whitesmoke;
 }
 
-.header, .grid-container, .grid-header {
+.header, .grid-container, .counter, .grid-mng {
     margin: .5rem;
     padding: 0 .5rem;
     display: flex;
@@ -307,7 +307,7 @@ h2 {
     text-decoration: none;
 }
 
-.grid-container {
+.grid-container, .grid-header, .counter, .grid-mng {
     margin: auto;
     padding: 1em;
     align-self: flex-end;
@@ -318,14 +318,8 @@ h2 {
     gap: 1rem;
 }
 
-.grid-header {
-    width: 100%;
-    height: fit-content;
-    padding: .5rem;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 1rem;
+.grid-header, .counter, .grid-mng {
+    flex-direction: row;
 }
 
 @media screen and (max-width: 820px) {
