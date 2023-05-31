@@ -184,6 +184,21 @@ body {
     align-items: center;
 }
 
+.info-body,
+.modal-body {
+    background: rgba(182,210,229,.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-body {
+    padding: 4rem;
+    background: rgb(232,241,247);
+    gap: 1rem;
+}
+
 @media screen and (max-width: 820px) {
     .header {
         padding: 2px;
