@@ -217,6 +217,17 @@ body {
     background-color: rgb(72,93,114);
 }
 
+.description {
+    border: 1px solid whitesmoke;
+    border-top: none;
+    border-bottom-left-radius: 4px;
+    padding: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(182,210,229,0.4);
+}
+
 @media screen and (max-width: 820px) {
     .header {
         padding: 2px;
