@@ -66,7 +66,7 @@ h2 {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    gap: 1rem;
+    gap: .5rem;
 }
 
 .toolbar {
@@ -74,7 +74,7 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: .5rem;
 }
 
 .modal-btns {
