@@ -267,10 +267,18 @@ body {
 }
 
 .hide-info, .hide-modal, .hide-props {
-    color: whitesmoke;
+    color: rgba(182,210,229,.4);
     float: right;
-    font-size: 3rem;
+    font-size: 30px;
     font-weight: 300;
+}
+
+.hide-info:hover, .hide-info:focus,
+.hide-modal:hover, .hide-modal:focus,
+.hide-props:hover, .hide-props:focus {
+    cursor: pointer;
+    color: whitesmoke;
+    text-decoration: none;
 }
 
 @media screen and (max-width: 820px) {
