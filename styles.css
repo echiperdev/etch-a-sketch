@@ -139,3 +139,23 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+@media screen and (max-width: 820px) {
+    .header {
+        padding: 2px;
+        justify-content: space-around;
+    }
+
+    .title {
+        font-size: 12px;
+    } /* Placeholder */
+
+    .toolbar {
+        padding: 3px;
+        gap: 6px;
+    }
+
+    .modal-btns {
+        gap: 6px;
+    }
+}
