@@ -4,6 +4,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Nunito Snas', sans-serif;
+}
+
+h2 {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: whitesmoke;
 }
 
 body {
@@ -41,7 +48,6 @@ body {
     margin: .5rem;
     display: flex;
     justify-content: center;
-    font-family: 'Nunito Snas', sans-serif;
     font-weight: 900;
     font-size: 1.5rem;
     color: #2c3a4e;
