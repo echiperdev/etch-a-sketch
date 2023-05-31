@@ -108,3 +108,10 @@ body {
     inset -4px -4px 6px 0 rgba(255,255,255,.5),
     inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
 }
+
+#active-clr {
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid #fff;
+    background-color:#2c3a4e;
+}
