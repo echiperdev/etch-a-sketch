@@ -164,6 +164,7 @@ body {
 }
 
 #info-modal {
+    display: flex;
     overflow: scroll;
 }
 
@@ -203,18 +204,26 @@ body {
 .resources {
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 .bio-header,
 .resources-header {
+    height: fit-content;
+    width: 100%;
     display: flex;
     justify-content: flex-end;
     border: 1px solid whitesmoke;
     border-top-right-radius: 4px;
     padding: .5rem;
     background-color: rgb(72,93,114);
+}
+
+.bio-header > h2,
+.resources-header > h2 {
+    flex: 1;
 }
 
 .description {
