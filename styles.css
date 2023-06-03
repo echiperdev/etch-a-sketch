@@ -362,6 +362,150 @@ h2 {
     background-color: white;
 }
 
+.properties-container {
+    margin: 0 0 0 2em;
+    height: 100%;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.properties-box {
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background-color: #e0e5ec;
+}
+
+.color-picker {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#shade-parent {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    user-select: none!important;
+    -moz-user-select: none!important;
+}
+
+#shade-picker {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid grey;
+    position: absolute;
+    top: 7%;
+    left: 83%;
+}
+
+#shade-picker > div {
+    width: 12px;
+    height: 12px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+}
+
+#shade-picker:hover {
+    border-color: aliceblue;
+}
+
+#shade-canvas {
+    user-select: none!important;
+    -moz-user-select: none!important;
+    -webkit-user-select: none;
+}
+
+#vertical-hue {
+    display: inline-block;
+    margin-left: 20px;  
+}
+
+#vertical-hue > #hue-parent {
+    width: 40px;
+    height: 300px;
+    position: relative;
+}
+
+#hue-picker {
+    width: 48px;
+    height: 8px;
+    box-sizing: border-box;
+    border: 2px solid white;
+    position: absolute;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#hue-picker:hover {
+    border-color: aliceblue;
+    cursor: pointer;
+}
+
+#horizontal-hue {
+    display: none;
+}
+
+#horizontal-hue > #hue-parent {
+    width: 300px;
+    height: 40px;
+    position: relative;
+}
+
+#hue-picker-horizontal {
+    width: 5px;
+    height: 44px;
+    border: 1px solid white;
+    position: absolute;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.palette-box {
+    width: 100%;
+    padding: 0.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.color-settings {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#hex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+#hex-code {
+    flex: 1;
+    width: 6em;
+    border-style: none;
+    border-radius: 4px;
+    padding: .4em .6em;
+    display: flex;
+    text-align: center;
+    background-color: white;
+    color: #000;
+}
+
 @media screen and (max-width: 820px) {
     .header {
         padding: 2px;
