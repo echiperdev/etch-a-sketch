@@ -626,6 +626,42 @@ palette-display {
     background-color: white;
 }
 
+.alerts {
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#alert-box {
+    margin: .5rem;
+    width: 30%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.alerts > h3,
+#alert-msg {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #2c3a4e;
+}
+
+#alert-msg {
+    height: 1.5rem;
+    margin-top: .5rem;
+}
+
+.footer {
+    height: 1.5rem;
+    margin-top: 1.5rem;
+}
+
 @media screen and (max-width: 820px) {
     .header {
         padding: 2px;
