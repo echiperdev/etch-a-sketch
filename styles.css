@@ -293,7 +293,7 @@ h2 {
 }
 
 .hide-info, .hide-modal, .hide-props {
-    color: rgba(182,210,229,.4);
+    color: whitesmoke;
     float: right;
     font-size: 30px;
     font-weight: 300;
@@ -303,7 +303,7 @@ h2 {
 .hide-modal:hover, .hide-modal:focus,
 .hide-props:hover, .hide-props:focus {
     cursor: pointer;
-    color: whitesmoke;
+    color: white;
     text-decoration: none;
 }
 
@@ -373,10 +373,11 @@ h2 {
 }
 
 .properties-box {
+    height: 100%;
     padding: 1em;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     gap: 1rem;
     background-color: #e0e5ec;
