@@ -89,7 +89,7 @@ h2 {
     display: inline-block;
 }
 
-.tips-content, .ers-content, .plt-content {
+.clr-content, .tips-content, .ers-content, .plt-content {
     display: none;
     position: absolute;
     min-width: fit-content;
@@ -120,6 +120,7 @@ h2 {
     text-decoration: none;
 }
 
+.clr-slct:hover, .clr-content,
 .tip-slct:hover .tips-content,
 .ers-slct:hover .ers-content,
 .plt-slct:hover .plt-content {
