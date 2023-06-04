@@ -35,7 +35,7 @@ let propBox = document.querySelector('.properties-box');
 let shadeCnv = document.getElementById('shade-canvas');
 let hueCnv = document.getElementById('hue-canvas');
 let shadeCtx = shadeCnv.getContext('2d');
-let hueCtx = hueCnv.getCotnext('2d');
+let hueCtx = hueCnv.getContext('2d');
 let shadePicker = document.getElementById('shade-picker');
 let huePicker = document.getElementById('hue-picker');
 let huePickerH = document.getElementById('hue-picker-horizontal');
@@ -46,17 +46,36 @@ let hexCode = document.getElementById('hex-code');
 let pltCustom = document.querySelector('.palettes-custom');
 let plt8bit = document.querySelector('.palettes-8-bit');
 let plt16bit = document.querySelector('.palettes-16-bit');
-let alerts = documnet.querySelector('.alerts');
+let alerts = document.querySelector('.alerts');
 let alertMsg = document.getElementById('alert-msg');
 let tabletWidth = window.matchMedia('(max-width: 820px)');
 
 // Page load functionality
 window.onload = (e) => {
     pltCustom.style.display = 'flex';
-    // mkBtns();
+    mkBtns();
     // initModal();
     // showInfo();
     // hideInfo();
     // defaultTool();
     // toolSelect();
+}
+
+// Store arrays of parent buttons and image sources
+let btns = {
+    name: [crayon, brush, wand, hard, soft, customPlt, toolProps, info, gen, clear, reset],
+    src: ['/img/crayon.svg', '/img/brush.svg', '/img/wand.svg', '/img/hard.svg', '/img/soft.svg', '/img/custom_swatch.svg', '/img/tool_properties.svg', '/img/information.svg', '/img/create.svg', '/img/clear.svg', 'img/reset.svg']
+};
+
+// Populate buttons with icons
+function mkBtns() {
+    for (let i = 0; i < btns.name.length; i++) {
+        let img = document.createElement('img');
+        btns.name[i].appendChild(img);
+    }
+    let btnImgs = Array.prototype.slice.call(document.querySelectorAll('img'));
+    for (let j = 0; j < btnImgs.length; j++) {
+        btnImgs[j].src = btns.src[j];
+        btnImgs[j].setAttribute('width', 24);
+    }
 }
