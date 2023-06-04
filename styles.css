@@ -368,7 +368,7 @@ h2 {
     background-color: white;
 }
 
-.properties-container {
+#properties-container {
     margin: 0 0 0 2em;
     height: 100%;
     width: auto;
@@ -701,6 +701,23 @@ palette-display {
 
     .socials {
         width: 90%;
+    }
+
+    .modal-header {
+        height: 1.5rem;
+        padding: 0;
+    }
+
+    .modal-content {
+        gap: 0;
+    }
+
+    .properties-box {
+        gap: .5rem;
+    }
+
+    .alerts {
+        font-size: 1rem;
     }
 }
 

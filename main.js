@@ -22,14 +22,14 @@ let hero = document.querySelector('.hero');
 let infoModal = document.getElementById('info-modal');
 let propsModal = document.getElementById('props-modal');
 let hideInfo = document.querySelector('.hide-info');
-let hideModal = document.querySelector('.hide-modal');
-let modalBody = document.querySelector('.mnodal-body');
+let closeModal = document.querySelector('.hide-modal');
+let modalBody = document.querySelector('.modal-body');
 let cellNum = document.getElementById('cell-counter');
 let gen = document.getElementById('generate');
 let clear = document.getElementById('clear');
 let reset = document.getElementById('reset');
 let grid = document.getElementById('grid');
-let propsCont = document.querySelector('.properties-container');
+let propsCont = document.getElementById('properties-container');
 let hideProps = document.querySelector('.hide-props');
 let propBox = document.querySelector('.properties-box');
 let shadeCnv = document.getElementById('shade-canvas');
@@ -52,13 +52,15 @@ let tabletWidth = window.matchMedia('(max-width: 820px)');
 
 // Page load functionality
 window.onload = (e) => {
+    propsCont.style.display = 'none';
+    propsModal.style.display = 'none';
     pltCustom.style.display = 'flex';
     mkBtns();
-    // initModal();
-    // showInfo();
-    // hideInfo();
     defaultTool();
     toolSelect();
+    initModal();
+    // showInfo();
+    // hideInfo();
 }
 
 // Store arrays of parent buttons and image sources
@@ -127,4 +129,59 @@ function toolSelect() {
             });
         }
     }
+}
+
+// Populate properties modal based on device width
+function initModal() {
+    let query = window.matchMedia('(min-width: 821px)');
+    if (query.matches) { // if page is wider than 820px
+        revealProps();
+        closeProps();
+    } else { // if page is narrower than 821px
+        console.log(propBox);
+        modalBody.appendChild(propsCont.removeChild(propBox));
+        revealModal();
+        hideModal();
+    }
+}
+
+// Reveals properties
+function revealProps() {
+    toolProps.addEventListener('click', () => {
+        if (propsCont.style.display !== 'none') {
+            propsCont.style.display = 'none';
+        } else {
+            propsCont.style.display = 'flex';
+        }
+    });
+}
+
+// Hides properties
+function closeProps() {
+    closeModal.addEventListener('click', () => {
+        propsCont.style.display = 'none';
+    })
+}
+
+// Reveals properties modal
+function revealModal() {
+    toolProps.addEventListener('click', () => {
+        if (propsModal.style.display !== 'none') {
+            propsModal.style.display = 'none';
+            propBox.style.display = 'none';
+        } else {
+            modalBody.appendChild(hero.removeChild(alerts));
+            propsModal.style.display = 'flex';
+            propBox.style.display = 'flex';
+        }
+    })
+}
+
+// Hides properties modal
+function hideModal() {
+    closeModal.addEventListener('click', () => {
+        hero.appendChild(modalBody.removeChild(alerts));
+        propsModal.style.display = 'none';
+        propBox.style.display = 'none';
+    });
 }
