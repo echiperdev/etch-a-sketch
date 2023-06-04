@@ -57,7 +57,7 @@ window.onload = (e) => {
     // initModal();
     // showInfo();
     // hideInfo();
-    // defaultTool();
+    defaultTool();
     // toolSelect();
 }
 
@@ -78,4 +78,9 @@ function mkBtns() {
         btnImgs[j].src = btns.src[j];
         btnImgs[j].setAttribute('width', 24);
     }
+}
+
+// Set crayon as default tool
+function defaultTool() {
+    crayon.style.background = '#b6c0ce';
 }
