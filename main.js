@@ -50,4 +50,13 @@ let alerts = documnet.querySelector('.alerts');
 let alertMsg = document.getElementById('alert-msg');
 let tabletWidth = window.matchMedia('(max-width: 820px)');
 
-
+// Page load functionality
+window.onload = (e) => {
+    pltCustom.style.display = 'flex';
+    // mkBtns();
+    // initModal();
+    // showInfo();
+    // hideInfo();
+    // defaultTool();
+    // toolSelect();
+}
