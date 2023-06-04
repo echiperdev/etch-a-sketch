@@ -58,7 +58,7 @@ window.onload = (e) => {
     // showInfo();
     // hideInfo();
     defaultTool();
-    // toolSelect();
+    toolSelect();
 }
 
 // Store arrays of parent buttons and image sources
@@ -82,5 +82,49 @@ function mkBtns() {
 
 // Set crayon as default tool
 function defaultTool() {
-    crayon.style.background = '#b6c0ce';
+    crayon.parentNode.style.outline = '2px solid goldenrod';
+}
+
+// Store button parents by category
+let toolBtns = [
+    {
+        parents: [activeTip, altTip1, altTip2]
+    },
+    {
+        parents: [activeErs, altErs]
+    },
+    {
+        parents: [activePlt, altPlt1, altPlt2]
+    }
+];
+
+// Handle active tool selection
+let activeBtn = [activeTip, activeErs, activePlt];
+function toolSelect() {
+    for (let i = 0; i < toolBtns.length; i++) {
+        toolBtns[i].parents[0].firstElementChild.addEventListener('click', () => {
+            let cloneParents = [...activeBtn];
+            cloneParents.splice(i, 1);
+            activeBtn[i].style.outline = '2px solid goldenrod';
+            activeBtn[i].setAttribute('class', 'active');
+            for (let j = 0; j < cloneParents.length; j++) {
+                cloneParents[j].style.outline = 'none';
+                cloneParents[j].setAttribute('class', 'inactive');
+            }
+        });
+        for (let k = 0; k < toolBtns[i].parents.length; k++) {
+            toolBtns[i].parents[k].addEventListener('click', () => {
+                toolBtns[i].parents[k].appendChild(toolBtns[i].parents[0].removeChild(toolBtns[i].parents[0].firstElementChild));
+                toolBtns[i].parents[0].appendChild(toolBtns[i].parents[k].removeChild(toolBtns[i].parents[k].firstElementChild));
+                let cloneParents = [...activeBtn];
+                cloneParents.splice(i, 1);
+                activeBtn[i].style.outline = '2px solid goldenrod';
+                activeBtn[i].setAttribute('class', 'active');
+                for (let l = 0; l < cloneParents.length; l++) {
+                    cloneParents[l].style.outline = 'none';
+                    cloneParents[l].setAttribute('class', 'inactive');
+                }
+            });
+        }
+    }
 }
