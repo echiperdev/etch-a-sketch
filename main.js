@@ -21,7 +21,7 @@ let infoBtn = document.getElementById('info');
 let hero = document.querySelector('.hero');
 let infoModal = document.getElementById('info-modal');
 let propsModal = document.getElementById('props-modal');
-let hideInfo = document.querySelector('.hide-info');
+let closeInfo = document.querySelector('.hide-info');
 let closeModal = document.querySelector('.hide-modal');
 let modalBody = document.querySelector('.modal-body');
 let cellNum = document.getElementById('cell-counter');
@@ -59,8 +59,8 @@ window.onload = (e) => {
     defaultTool();
     toolSelect();
     initModal();
-    // showInfo();
-    // hideInfo();
+    showInfo();
+    hideInfo();
 }
 
 // Store arrays of parent buttons and image sources
@@ -138,7 +138,6 @@ function initModal() {
         revealProps();
         closeProps();
     } else { // if page is narrower than 821px
-        console.log(propBox);
         modalBody.appendChild(propsCont.removeChild(propBox));
         revealModal();
         hideModal();
@@ -183,5 +182,19 @@ function hideModal() {
         hero.appendChild(modalBody.removeChild(alerts));
         propsModal.style.display = 'none';
         propBox.style.display = 'none';
+    });
+}
+
+// Reveal information modal
+function showInfo() {
+    info.addEventListener('click', () => {
+        infoModal.style.display = 'flex';
+    });
+}
+
+// Hide information modal
+function hideInfo() {
+    closeInfo.addEventListener('click', () => {
+        infoModal.style.display = 'none';
     });
 }
