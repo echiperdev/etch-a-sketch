@@ -46,6 +46,7 @@ let shadeParent = document.getElementById('shade-parent');
 let hueParent = document.getElementById('hue-parent');
 let colors = ['red', '#ff0', 'lime', 'cyan', 'blue', '#f0f', 'red'];
 let hexCode = document.getElementById('hex-code');
+let currentColor = document.querySelector('.current-color');
 let pltCustom = document.querySelector('.palettes-custom');
 let plt8bit = document.querySelector('.palettes-8-bit');
 let plt16bit = document.querySelector('.palettes-16-bit');
@@ -70,6 +71,7 @@ window.onload = (e) => {
     setSldPosH();
     initShadeGrd('#1d58b6');
     hexCode.innerHTML = '#1d58b6';
+    currentColor.style.backgroundColor = '#1d58b6';
     dragShade();
     slideHue();
     clickSH();
@@ -287,6 +289,7 @@ function setShadePicker() {
     }
     let data = shadeCtx.getImageData(x,y,1,1)['data'];
     hexCode.innerText = `${rgbToHex(data[0], data[1], data[2])}`;
+    currentColor.style.backgroundColor = `${rgbToHex(data[0], data[1], data[2])}`;
 }
 
 // Set hue sliders positions
