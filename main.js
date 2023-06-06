@@ -306,3 +306,39 @@ function setSldPosH() {
     initShadeGrd(rgba);
     setShadePicker();
 }
+
+// Establish shade picker drag behavior
+const drag = (e) => {
+    let parentRect = shadeParent.getBoundingClientRect(),
+        x = e.clientX - parentRect.x,
+        y = e.clientY - parentRect.y;
+    if (x <= 0 && y <= 0) {
+        shadePicker.style.left = '-8px';
+        picker.style.top = '-8px';
+    } else if (x <= 0 && y >= 300) {
+        shadePicker.style.left = '-8px';
+        shadePicker.style.top = (300 - 8) + 'px';
+    } else if (x >= 300 && y <= 0) {
+        shadePicker.style.left = (300 - 8) + 'px';
+        shadePicker.style.top = '-8px';
+    } else if (x >= 300 && y >= 300) {
+        shadePicker.style.left = (300 - 8) + 'px';
+        shadePicker.style.top = (300 - 8) + 'px';
+    } else if (x >= 0 && x <= 300 && y <= 0) {
+        shadePicker.style.left = (x - 8) + 'px';
+        shadePicker.style.top = '-8px';
+    } else if (x >= 300 && y >= 0 && y <= 300) {
+        shadePicker.style.left = (300 - 8) + 'px';
+        shadePicker.style.top = (y - 8) + 'px';
+    } else if (x >= 0 && x <= 300 && y >= 300) {
+        shadePicker.style.left = (x - 8) + 'px';
+        shadePicker.style.top = (300 - 8) + 'px';
+    } else if (x <= 0 && y >= 0 && y <= 300) {
+        shadePicker.style.left = '-8px';
+        shadePicker.style.top = (y - 8) + 'px';
+    } else {
+        shadePicker.style.left = (x - 8) + 'px';
+        shadePicker.style.top = (y - 8) + 'px';
+    }
+    setShadePicker();
+}
