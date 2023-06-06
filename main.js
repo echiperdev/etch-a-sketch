@@ -429,36 +429,7 @@ const slideH = (e) => {
     setShadePicker();
 }
 
-
-// Generate grid
-// function genGrid() {
-//     generate.addEventListener('click', () => {
-//         console.log(cellNum.value);
-//         let cellCount = Number(cellNum.value);
-//         if (Number.isInteger(cellCount)) {
-//             if (cellCount !== 0 && cellCount <= 100) {
-//                 let rows = cellCount;
-//                 let columns = rows;
-//                 grid.style.borderRight = 'none';
-//                 grid.style.borderBottom = 'none';
-//                 mkCells(rows, columns);
-//                 alertMsg.innerHTML = `The grid contains ${rows * columns} cells`;
-//                 alertMsg.style.color = 'green';
-//                 cellNum.disabled = true;
-//                 generate.disabled = true;
-//             } else {
-//                 alertMsg.innerHTML = 'Please insert a value from 1 to 100!';
-//                 alertMsg.style.color = 'red';
-//             }
-//         } else {
-//             alertMsg.innerHTML = 'Please input a <span id="error-msg" title="A whole number from 1 to 100">positive integer!</span>';
-//             alertMsg.style.color = 'red';
-//             document.getElementById('error-msg').style.color = 'red';
-//             document.getElementById('error-msg').style.background = '#e0e5ec';
-//         }
-//     });
-// }
-
+// Handle grid cells generation
 function genGrid() {
     generate.addEventListener('click', () => {
         let pattern = new RegExp('^[1-9][0-9]?$|^100$');
@@ -473,7 +444,7 @@ function genGrid() {
                 alertMsg.innerHTML = `The grid contains ${rows * columns} cells`;
                 alertMsg.style.color = 'green';
                 cellNum.disabled = true;
-                generate.disabled = true;
+                generate.style.pointerEvents = 'none';
             } else {
                 alertMsg.innerHTML = 'Please insert a whole number from 1 to 100!';
                 alertMsg.style.color = 'red';
