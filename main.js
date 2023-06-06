@@ -388,3 +388,19 @@ function slideHue() {
         window.removeEventListener('mousemove', slide);
     });
 }
+
+// Handle shade and hue canvases click events
+function clickSH() {
+    shadeCnv.addEventListener('click', function(e) {
+        let x = e.offsetX - 8;
+        let y = e.offsetY - 8;
+        shadePicker.style.left = x + 'px';
+        shadePicker.style.top = y + 'px';
+        setShadePicker();
+    });
+    hueCnv.addEventListener('click', function(e) {
+        let y = e.offsetY - 4;
+        huePicker.style.top = y + 'px';
+        setSldPos();
+    });
+}
