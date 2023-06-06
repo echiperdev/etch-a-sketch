@@ -213,34 +213,3 @@ function toggleClr() {
         }
     });
 }
-
-// Initiate hue gradient
-function initHueGrd() {
-    let hueGrd = hueCtx.createLinearGradient(0,0,0,300);
-    hueGrd.addColorStop(0, 'red');
-    for (let i = 0; i < colors.length; i++) {
-        hueGrd.addColorStop(i / (colors.length - 1), colors[i]);
-    }
-    hueCtx.fillStyle = hueGrd;
-    hueCtx.fillRect(0,0,300,300);
-}
-
-// Initialize horizontal hue gradient
-function initHueGrdH() {
-    let hueGrd = hueCtx.createLinearGradient(0,0,300,0);
-    for (let i = 0; i < colors.length; i++) {
-        hueGrd.addColorStop(i / (colors.length - 1), colors[i]);
-    }
-    hueCtx.fillStyle = hueGrd;
-    hueCtx(0,0,300,300);
-}
-
-// Handle color conversion
-function intToHex (c) {
-    let hex = c.toString(16);
-    return hex.length = 1 ? '0' + hex : hex;
-}
-
-function rgbToHex(r, g, b) {
-    return '#' + intToHex(r) + intToHex(g) + intToHex(b);
-}
