@@ -1,5 +1,9 @@
 // Import responsive elements
-let activeClrPrnt = document.querySelector('#active-clr-parent');
+let title = document.querySelector('.title');
+let clrSlct = document.querySelector('.clr-slct');
+let activeClr = document.getElementById('active-clr');
+let activeClrCont = document.querySelector('.active-clr-content');
+let closeClr = document.querySelector('.hide-clr');
 let activeTip = document.getElementById('active-tip');
 let crayon = document.getElementById('crayon');
 let altTip1 = document.getElementById('alt-tip-1');
@@ -30,7 +34,6 @@ let clear = document.getElementById('clear');
 let reset = document.getElementById('reset');
 let grid = document.getElementById('grid');
 let propsCont = document.getElementById('properties-container');
-let hideProps = document.querySelector('.hide-props');
 let propBox = document.querySelector('.properties-box');
 let shadeCnv = document.getElementById('shade-canvas');
 let hueCnv = document.getElementById('hue-canvas');
@@ -48,10 +51,11 @@ let plt8bit = document.querySelector('.palettes-8-bit');
 let plt16bit = document.querySelector('.palettes-16-bit');
 let alerts = document.querySelector('.alerts');
 let alertMsg = document.getElementById('alert-msg');
-let tabletWidth = window.matchMedia('(max-width: 820px)');
+let tabletWidth = window.matchMedia('(min-width: 821px)');
 
 // Page load functionality
 window.onload = (e) => {
+    activeClrCont.style.display = 'none';
     propsCont.style.display = 'none';
     propsModal.style.display = 'none';
     pltCustom.style.display = 'flex';
@@ -133,19 +137,21 @@ function toolSelect() {
 
 // Populate properties modal based on device width
 function initModal() {
-    let query = window.matchMedia('(min-width: 821px)');
-    if (query.matches) { // if page is wider than 820px
-        revealProps();
-        closeProps();
+    if (tabletWidth.matches) { // if page is wider than 820px
+        toggleProps();
+        toggleClr();
     } else { // if page is narrower than 821px
         modalBody.appendChild(propsCont.removeChild(propBox));
         revealModal();
         hideModal();
+        title.innerHTML = '<span> E' + '&bull;' + 'A' + '&bull;' + 'S';
+        title.style.fontSize = '24px';
+        clrSlct.style.display = 'none';
     }
 }
 
 // Reveals properties
-function revealProps() {
+function toggleProps() {
     toolProps.addEventListener('click', () => {
         if (propsCont.style.display !== 'none') {
             propsCont.style.display = 'none';
@@ -153,13 +159,6 @@ function revealProps() {
             propsCont.style.display = 'flex';
         }
     });
-}
-
-// Hides properties
-function closeProps() {
-    closeModal.addEventListener('click', () => {
-        propsCont.style.display = 'none';
-    })
 }
 
 // Reveals properties modal
@@ -196,5 +195,20 @@ function showInfo() {
 function hideInfo() {
     closeInfo.addEventListener('click', () => {
         infoModal.style.display = 'none';
+    });
+}
+
+// Set color selection button behavior
+function toggleClr() {
+    activeClr.addEventListener('click', () => {
+        if (activeClrCont.style.display !== 'none') {
+            activeClrCont.style.display = 'none';
+            propsCont.appendChild(propBox.parentNode.removeChild(propBox));
+        } else {
+            activeClrCont.appendChild(propsCont.removeChild(propBox));
+            activeClrCont.style.display = 'inline-block';
+            activeClrCont.style.marginTop = '1rem';
+            activeClrCont.style.right = '-190px';
+        }
     });
 }
