@@ -70,6 +70,7 @@ window.onload = (e) => {
     setSldPosH();
     initShadeGrd('#1d58b6');
     hexCode.innerHTML = '#1d58b6';
+    slideHue();
 }
 
 // Store arrays of parent buttons and image sources
@@ -371,4 +372,15 @@ const slide = (e) => {
     let rgba = `rgb(${data[0]}, ${data[1]}, ${data[2]})`;
     initShadeGrd(rgba);
     setShadePicker();
+}
+
+// Handle hue slider interactions
+function slideHue() {
+    huePicker.addEventListener('mousedown', function(e) {
+        e.preventDefault();
+        window.addEventListener('mousemove', slide);
+    });
+    window.addEventListener('mouseup', function(e) {
+        window.removeEventListener('mousemove', slide);
+    })
 }
