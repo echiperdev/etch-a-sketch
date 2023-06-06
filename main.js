@@ -66,6 +66,10 @@ window.onload = (e) => {
     showInfo();
     hideInfo();
     initHueGrd();
+    setSldPos();
+    setSldPosH();
+    initShadeGrd('#1d58b6');
+    hexCode.innerHTML = '#1d58b6';
 }
 
 // Store arrays of parent buttons and image sources
@@ -278,4 +282,27 @@ function setShadePicker() {
     }
     let data = shadeCtx.getImageData(x,y,1,1)['data'];
     hexCode.innerText = `${rgbToHex(data[0], data[1], data[2])}`;
+}
+
+// Set hue sliders positions
+function setSldPos() {
+    let hueRect = hueParent.getBoundingClientRect();
+    let sldRect = huePicker.getBoundingClientRect();
+    let x = sldRect.x - hueRect.x + 10;
+    let y = sldRect.y - hueRect.y + 10;
+    let data = hueCtx.getImageData(x,y,1,1)['data'];
+    let rgba = `rgba(${data[0]},${data[1]},${data[2]},${data[3]/255})`;
+    initShadeGrd(rgba);
+    setShadePicker();
+}
+
+function setSldPosH() {
+    let hueRect = hueParent.getBoundingClientRect();
+    let sldRect = huePickerH.getBoundingClientRect();
+    let x = sldRect.x - hueRect.x + 10;
+    let y = sldRect.y - hueRect.y + 10;
+    let data = hueCtx.getImageData(x, y, 1, 1)['data'];
+    let rgba = `rgba(${data[0]},${data[1]},${data[2]},${data[3] / 255})`;
+    initShadeGrd(rgba);
+    setShadePicker();
 }
