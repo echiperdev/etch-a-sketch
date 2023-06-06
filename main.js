@@ -74,6 +74,7 @@ window.onload = (e) => {
     slideHue();
     clickSH();
     genGrid();
+    resetGrid();
 }
 
 // Store arrays of parent buttons and image sources
@@ -460,4 +461,17 @@ function mkCells(rows, columns) {
         let cell = document.createElement('div');
         grid.appendChild(cell).className = 'grid-cell';
     }
+}
+
+// Handle grid area reset
+function resetGrid() {
+    reset.addEventListener('click', () => {
+        cellNum.disabled = false;
+        cellNum.value = '';
+        grid.innerHTML = '';
+        grid.style.borderRight = '1px solid #e0e5ec';
+        grid.style.borderBottom = '1px solid #e0e5ec';
+        generate.style.pointerEvents = 'auto';
+        alertMsg.innerHTML = '';
+    })
 }
