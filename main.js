@@ -213,3 +213,14 @@ function toggleClr() {
         }
     });
 }
+
+// Initialize hue gradient
+function initHueGrd() {
+    let hueGrd = hueCtx.createLinearGradient(0,0,0,300);
+    hueGrd.addColorStop(0, 'red');
+    for (let i = 0; i < colors.length; i++) {
+        hueGrd.addColorStop(i / (colors.length - 1), colors[i]);
+    }
+    hueCtx.fillStyle = hueGrd;
+    hueCtx.fillRect(0,0,300,300);
+}
