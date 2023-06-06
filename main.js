@@ -70,6 +70,7 @@ window.onload = (e) => {
     setSldPosH();
     initShadeGrd('#1d58b6');
     hexCode.innerHTML = '#1d58b6';
+    dragShade();
     slideHue();
 }
 
@@ -345,13 +346,16 @@ const drag = (e) => {
 }
 
 // Handle shade picker interactions
-shadePicker.addEventListener('mousedown', function(e) {
-    e.preventDefault();
-    window.addEventListener('mousemove', drag);
-});
-window.addEventListener('mouseup', function(e) {
-    this.window.removeEventListener('mousemove', drag);
-})
+function dragShade() {
+    shadePicker.addEventListener('mousedown', function(e) {
+        e.preventDefault();
+        window.addEventListener('mousemove', drag);
+    });
+    window.addEventListener('mouseup', function(e) {
+        this.window.removeEventListener('mousemove', drag);
+    });
+}
+
 
 // Establish hue slider behavior
 const slide = (e) => {
@@ -382,5 +386,5 @@ function slideHue() {
     });
     window.addEventListener('mouseup', function(e) {
         window.removeEventListener('mousemove', slide);
-    })
+    });
 }
