@@ -342,3 +342,12 @@ const drag = (e) => {
     }
     setShadePicker();
 }
+
+// Handle shade picker interactions
+shadePicker.addEventListener('mousedown', function(e) {
+    e.preventDefault();
+    window.addEventListener('mousemove', drag);
+});
+window.addEventListener('mouseup', function(e) {
+    this.window.removeEventListener('mousemove', drag);
+})
