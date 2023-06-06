@@ -351,3 +351,24 @@ shadePicker.addEventListener('mousedown', function(e) {
 window.addEventListener('mouseup', function(e) {
     this.window.removeEventListener('mousemove', drag);
 })
+
+// Establish hue slider behavior
+const slide = (e) => {
+    let hueRect = hueParent.getBoundingClientRect(),
+        y = e.clientY - hueRect.y,
+        yPos;
+    if (y <= 0) {
+        huePicker.style.top = '-4px';
+        yPos = 0;
+    } else if (y >= 300) {
+        huePicker.style.top = (300 - 4) + 'px';
+        yPos = 299;
+    } else {
+        huePicker.style.top = (y - 4) + 'px';
+        yPos = y;
+    }
+    let data = hueCtx.getImageData(20, yPos, 1, 1)['data'];
+    let rgba = `rgb(${data[0]}, ${data[1]}, ${data[2]})`;
+    initShadeGrd(rgba);
+    setShadePicker();
+}
