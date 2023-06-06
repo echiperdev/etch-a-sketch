@@ -28,8 +28,8 @@ let propsModal = document.getElementById('props-modal');
 let closeInfo = document.querySelector('.hide-info');
 let closeModal = document.querySelector('.hide-modal');
 let modalBody = document.querySelector('.modal-body');
-let cellNum = document.getElementById('cell-counter');
-let gen = document.getElementById('generate');
+let cellNum = document.getElementById('cell-number');
+let generate = document.getElementById('generate');
 let clear = document.getElementById('clear');
 let reset = document.getElementById('reset');
 let grid = document.getElementById('grid');
@@ -73,11 +73,12 @@ window.onload = (e) => {
     dragShade();
     slideHue();
     clickSH();
+    genGrid();
 }
 
 // Store arrays of parent buttons and image sources
 let btns = {
-    name: [crayon, brush, wand, hard, soft, customPlt, toolProps, info, gen, clear, reset],
+    name: [crayon, brush, wand, hard, soft, customPlt, toolProps, info, generate, clear, reset],
     src: ['/img/crayon.svg', '/img/brush.svg', '/img/wand.svg', '/img/hard.svg', '/img/soft.svg', '/img/custom_swatch.svg', '/img/tool_properties.svg', '/img/information.svg', '/img/create.svg', '/img/clear.svg', 'img/reset.svg']
 };
 
@@ -426,4 +427,66 @@ const slideH = (e) => {
     let rgba = `rgb(${data[0]}, ${data[1]}, ${data[2]})`;
     initShadeGrd(rgba);
     setShadePicker();
+}
+
+
+// Generate grid
+// function genGrid() {
+//     generate.addEventListener('click', () => {
+//         console.log(cellNum.value);
+//         let cellCount = Number(cellNum.value);
+//         if (Number.isInteger(cellCount)) {
+//             if (cellCount !== 0 && cellCount <= 100) {
+//                 let rows = cellCount;
+//                 let columns = rows;
+//                 grid.style.borderRight = 'none';
+//                 grid.style.borderBottom = 'none';
+//                 mkCells(rows, columns);
+//                 alertMsg.innerHTML = `The grid contains ${rows * columns} cells`;
+//                 alertMsg.style.color = 'green';
+//                 cellNum.disabled = true;
+//                 generate.disabled = true;
+//             } else {
+//                 alertMsg.innerHTML = 'Please insert a value from 1 to 100!';
+//                 alertMsg.style.color = 'red';
+//             }
+//         } else {
+//             alertMsg.innerHTML = 'Please input a <span id="error-msg" title="A whole number from 1 to 100">positive integer!</span>';
+//             alertMsg.style.color = 'red';
+//             document.getElementById('error-msg').style.color = 'red';
+//             document.getElementById('error-msg').style.background = '#e0e5ec';
+//         }
+//     });
+// }
+
+function genGrid() {
+    generate.addEventListener('click', () => {
+        let pattern = new RegExp('^[1-9][0-9]?$|^100$');
+        let cellCount = Number(cellNum.value);
+        if (cellCount !== '') {
+            if (pattern.test(cellCount)) {
+                let rows = cellCount;
+                let columns = rows;
+                grid.style.borderRight = 'none';
+                grid.style.borderBottom = 'none';
+                mkCells(rows, columns);
+                alertMsg.innerHTML = `The grid contains ${rows * columns} cells`;
+                alertMsg.style.color = 'green';
+                cellNum.disabled = true;
+                generate.disabled = true;
+            } else {
+                alertMsg.innerHTML = 'Please insert a whole number from 1 to 100!';
+                alertMsg.style.color = 'red';
+            }
+        }
+    })
+}
+
+function mkCells(rows, columns) {
+    grid.style.setProperty('--grid-rows', rows);
+    grid.style.setProperty('--grid-columns', columns);
+    for (let i = 0; i < (rows * columns); i++) {
+        let cell = document.createElement('div');
+        grid.appendChild(cell).className = 'grid-cell';
+    }
 }

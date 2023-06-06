@@ -12,6 +12,8 @@
 :root {
     --modal-duration: 1s;
     --modal-color: #4d8bca;
+    --grid-columns: 1;
+    --grid-columns: 1;
 }
 
 body {
@@ -350,6 +352,7 @@ h2 {
 #cell-number {
     width: 2.5rem;
     height: 1.2rem;
+    padding: .2rem;
     border: none;
     border-radius: 3px;
 }
@@ -373,6 +376,16 @@ h2 {
     width: 600px;
     height: 600px;
     background-color: white;
+    display: grid;
+    grid-template-rows: repeat(var(--grid-rows), 1fr);
+    grid-template-columns: repeat(var(--grid-columns), 1fr);
+    border: 1px solid #e0e5ec;
+}
+
+.grid-cell {
+    border: 1px solid #e0e5ec;
+    border-top: none;
+    border-left: none;
 }
 
 #properties-container {
@@ -725,6 +738,10 @@ palette-display {
 
     .alerts {
         font-size: 1rem;
+    }
+
+    #alert-msg {
+        font-size: 12px;
     }
 }
 
