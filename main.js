@@ -244,3 +244,17 @@ function intToHex(c) {
 function rgbToHex (r, g, b) {
     return '#' + intToHex(r) + intToHex(g) + intToHex(b);
 }
+
+// Initialize shade gradient
+function initShadeGrd(color) {
+    let grdH = shadeCtx.createLinearGradient(0,0,shadeCtx.canvas.width,0);
+    grdH.addColorStop(0, '#fff');
+    grdH.addColorStop(1, color);
+    shadeCtx.fillStyle = grdH;
+    shadeCtx.fillRect(0, 0, shadeCtx.canvas.width, shadeCtx.canvas.height);
+    let grdV = shadeCtx.createLinearGradient(0,0,0,300);
+    grdV.addColorStop(0, 'rgba(0,0,0,0)');
+    grdV.addColorStop(1, '#000');
+    shadeCtx.fillStyle = grdV;
+    shadeCtx.fillRect(0, 0, shadeCtx.canvas.width, shadeCtx.canvas.height);
+}
