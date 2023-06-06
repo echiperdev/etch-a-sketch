@@ -258,3 +258,24 @@ function initShadeGrd(color) {
     shadeCtx.fillStyle = grdV;
     shadeCtx.fillRect(0, 0, shadeCtx.canvas.width, shadeCtx.canvas.height);
 }
+
+// Set shade picker position and color
+function setShadePicker() {
+    let pkRect = shadePicker.getBoundingClientRect();
+    let prRect = shadeParent.getBoundingClientRect();
+    let x, y, tmpX, tmpY;
+    tmpX = pkRect.x - prRect.x + 8;
+    tmpY = pkRect.y - prRect.y + 8;
+    if (tmpX == 300) {
+        x = tmpX - 1;
+    } else {
+        x = tmpX;
+    };
+    if (tmpY == 300) {
+        y = tmpY - 1;
+    } else {
+        y = tmpY;
+    }
+    let data = shadeCtx.getImageData(x,y,1,1)['data'];
+    hexCode.innerText = `${rgbToHex(data[0], data[1], data[2])}`;
+}
