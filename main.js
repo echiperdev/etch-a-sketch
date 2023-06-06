@@ -72,6 +72,7 @@ window.onload = (e) => {
     hexCode.innerHTML = '#1d58b6';
     dragShade();
     slideHue();
+    clickSH();
 }
 
 // Store arrays of parent buttons and image sources
@@ -403,4 +404,26 @@ function clickSH() {
         huePicker.style.top = y + 'px';
         setSldPos();
     });
+}
+
+// Handle horizontal hue slider behavior
+const slideH = (e) => {
+    let hueRect = hueParent.getBoundingClientRect();
+    let left = '' + ((e.clientX - hueRect.x - 3) / 300) * 100 + '%';
+    let xPos;
+    let tmpLeft = ((e.clientX - hueRect.x - 3) / 300)* 100 + '%';
+    if (tmpLeft <= -0.2) {
+        huePickerH.style.left = '-0.2%';
+        xPos = 0;
+    } else if (tmpLeft >= 97) {
+        huePickerH.style.left = '97%';
+        xPos = 296;
+    } else {
+        huePickerH.style.left = left;
+        xPos = e.clientX - hueRect.x - 3;
+    }
+    let data = hueCtx.getImageData(xPos, 20, 1, 1)['data'];
+    let rgba = `rgb(${data[0]}, ${data[1]}, ${data[2]})`;
+    initShadeGrd(rgba);
+    setShadePicker();
 }
