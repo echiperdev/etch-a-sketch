@@ -224,3 +224,13 @@ function initHueGrd() {
     hueCtx.fillStyle = hueGrd;
     hueCtx.fillRect(0,0,300,300);
 }
+
+// Initialize horizontal hue gradient
+function initHueGrdH() {
+    let hueGrd = hueCtx.createLinearGradient(0,0,300,0);
+    for (let i = 0; i < colors.length; i++) {
+        hueGrd.addColorStop(i / (colors.length - 1), colors[i]);
+    }
+    hueCtx.fillStyle = hueGrd;
+    hueCtx.fillRect(0,0,300,300);
+}
