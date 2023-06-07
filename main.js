@@ -100,7 +100,8 @@ function mkBtns() {
 
 // Set crayon as default tool
 function defaultTool() {
-    crayon.parentNode.style.outline = '2px solid goldenrod';
+    crayon.parentNode.style.border = '2px solid goldenrod';
+    crayon.parentNode.style.borderRadius = '4px';
 }
 
 // Store button parents by category
@@ -123,10 +124,11 @@ function toolSelect() {
         toolBtns[i].parents[0].firstElementChild.addEventListener('click', () => {
             let cloneParents = [...activeBtn];
             cloneParents.splice(i, 1);
-            activeBtn[i].style.outline = '2px solid goldenrod';
+            activeBtn[i].style.border = '2px solid goldenrod';
+            activeBtn[i].style.borderRadius = '4px';
             activeBtn[i].setAttribute('class', 'active');
             for (let j = 0; j < cloneParents.length; j++) {
-                cloneParents[j].style.outline = 'none';
+                cloneParents[j].style.border = 'none';
                 cloneParents[j].setAttribute('class', 'inactive');
             }
         });
@@ -136,10 +138,11 @@ function toolSelect() {
                 toolBtns[i].parents[0].appendChild(toolBtns[i].parents[k].removeChild(toolBtns[i].parents[k].firstElementChild));
                 let cloneParents = [...activeBtn];
                 cloneParents.splice(i, 1);
-                activeBtn[i].style.outline = '2px solid goldenrod';
+                activeBtn[i].style.border = '2px solid goldenrod';
+                activeBtn[i].style.borderRadius = '2px solid goldenrod';
                 activeBtn[i].setAttribute('class', 'active');
                 for (let l = 0; l < cloneParents.length; l++) {
-                    cloneParents[l].style.outline = 'none';
+                    cloneParents[l].style.border = 'none';
                     cloneParents[l].setAttribute('class', 'inactive');
                 }
             });
