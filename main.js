@@ -46,8 +46,10 @@ let shadeParent = document.getElementById('shade-parent');
 let hueParent = document.getElementById('hue-parent');
 let colors = ['red', '#ff0', 'lime', 'cyan', 'blue', '#f0f', 'red'];
 let hexCode = document.getElementById('hex-code');
-let currentColor = document.querySelector('.current-color');
+let addSwatch = document.getElementById('add-swatch');
+let currentColor = document.getElementById('current-color');
 let pltCustom = document.querySelector('.palettes-custom');
+let swatchHouse = document.querySelector('.swatch-house');
 let plt8bit = document.querySelector('.palettes-8-bit');
 let plt16bit = document.querySelector('.palettes-16-bit');
 let alerts = document.querySelector('.alerts');
@@ -77,6 +79,7 @@ window.onload = (e) => {
     clickSH();
     genGrid();
     resetGrid();
+    mkSwatches();
 }
 
 // Store arrays of parent buttons and image sources
@@ -479,5 +482,16 @@ function resetGrid() {
         grid.style.borderBottom = '1px solid #e0e5ec';
         generate.style.pointerEvents = 'auto';
         alertMsg.innerHTML = '';
+    })
+}
+
+// Handle custom swatches
+function mkSwatches() {
+    addSwatch.addEventListener('click', () => {
+        let swatch = document.createElement('div');
+        swatchHouse.appendChild(swatch).className = 'custom-swatch';
+        swatch.style.backgroundColor = `${hexCode.innerText}`;
+        swatch.style.width = '1rem';
+        swatch.style.height = '1rem'
     })
 }
