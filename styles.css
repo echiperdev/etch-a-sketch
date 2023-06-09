@@ -399,11 +399,11 @@ h2 {
 }
 
 .properties-box {
-    height: 100%;
+    height: fit-content;
     padding: 1em;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     gap: 1rem;
     background-color: #e0e5ec;
@@ -544,7 +544,7 @@ h2 {
 }
 
 .color-mode {
-    width: 100%;
+    height: 1.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -552,20 +552,27 @@ h2 {
 }
 
 .color-mode > p {
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100%;
     font-weight: 600;
     line-height: 1.6;
 }
 
 #clr-mode {
+    width: 96px;
+    text-align: center;
     margin: 0 .5rem;
-    padding: 0.3rem 0.5rem;
+    padding: 0.2rem 0.2rem;
     background-color: white;
     border-radius: 4px;
     font-weight: 300;
 }
 
 .switch-container {
+    flex: 1;
     height: 100%;
     display: flex;
     justify-content: center;

@@ -46,8 +46,10 @@ let shadeParent = document.getElementById('shade-parent');
 let hueParent = document.getElementById('hue-parent');
 let colors = ['red', '#ff0', 'lime', 'cyan', 'blue', '#f0f', 'red'];
 let hexCode = document.getElementById('hex-code');
+let clrMode = document.getElementById('clr-mode');
 let addSwatch = document.getElementById('add-swatch');
 let currentColor = document.getElementById('current-color');
+let pltDisplay = document.querySelector('.palette-display');
 let pltCustom = document.querySelector('.palettes-custom');
 let swatchHouse = document.querySelector('.swatch-house');
 let plt8bit = document.querySelector('.palettes-8-bit');
@@ -61,7 +63,7 @@ window.onload = (e) => {
     activeClrCont.style.display = 'none';
     propsCont.style.display = 'none';
     propsModal.style.display = 'none';
-    pltCustom.style.display = 'flex';
+    pltDisplay.style.display = 'none';
     mkBtns();
     defaultTool();
     toolSelect();
@@ -80,6 +82,8 @@ window.onload = (e) => {
     genGrid();
     resetGrid();
     mkSwatches();
+    switchTips();
+    switchErs();
     swapPalettes();
 }
 
@@ -497,12 +501,35 @@ function mkSwatches() {
     })
 }
 
+// Handle tip switch
+function switchTips() {
+    const btns = [crayon, brush, wand];
+    const modes = ['Solid', 'Watercolor', 'Multicolor'];
+    for (let i = 0; i < btns.length; i++) {
+        btns[i].addEventListener('click', () => {
+            clrMode.innerHTML = modes[i];
+        })
+    }
+}
+
+// Handle eraser switch
+function switchErs() {
+    const btns = [hard, soft];
+    const modes = ['Hard', 'Soft'];
+    for (let i = 0; i < btns.length; i++) {
+        btns[i].addEventListener('click', () => {
+            clrMode.innerHTML = modes[i];
+        })
+    }
+}
+
 // Handle palette set switch
 function swapPalettes() {
     const btns = [customPlt, bit8, bit16];
     const sets = [pltCustom, plt8bit, plt16bit];
     for (let i = 0; i < btns.length; i++) {
         btns[i].addEventListener('click', () => {
+            pltDisplay.style.display = 'flex';
             sets[i].style.display = 'flex';
             let cloneSets = [...sets];
             cloneSets.splice(i, 1);
