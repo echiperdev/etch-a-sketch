@@ -80,6 +80,7 @@ window.onload = (e) => {
     genGrid();
     resetGrid();
     mkSwatches();
+    swapPalettes();
 }
 
 // Store arrays of parent buttons and image sources
@@ -494,4 +495,20 @@ function mkSwatches() {
         swatch.style.width = '1rem';
         swatch.style.height = '1rem'
     })
+}
+
+// Handle palette set switch
+function swapPalettes() {
+    const btns = [customPlt, bit8, bit16];
+    const sets = [pltCustom, plt8bit, plt16bit];
+    for (let i = 0; i < btns.length; i++) {
+        btns[i].addEventListener('click', () => {
+            sets[i].style.display = 'flex';
+            let cloneSets = [...sets];
+            cloneSets.splice(i, 1);
+            for (let j = 0; j < cloneSets.length; j++) {
+                cloneSets[j].style.display = 'none';
+            }
+        });
+    }
 }
