@@ -674,6 +674,37 @@ input:checked + .slider:before {
     gap: 0.2rem;
 }
 
+.swatch-container {
+    width: 100%;
+    height: fit-content;
+    border-radius: 3px;
+    padding: .1rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.plt-name {
+    height: 1rem;
+}
+
+.palette {
+    height: fit-content;
+    width: 100%;
+    border-radius: 3px;
+    padding: .1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background-color: #e0e5ec;
+}
+
+.legacy-swatch {
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid #e0e5ec;
+}
+
 .alerts {
     width: 100%;
     margin-top: 1rem;

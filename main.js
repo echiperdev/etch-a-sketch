@@ -85,6 +85,7 @@ window.onload = (e) => {
     switchTips();
     switchErs();
     swapPalettes();
+    mkLegPlt();
 }
 
 // Store arrays of parent buttons and image sources
@@ -445,6 +446,7 @@ const slideH = (e) => {
 }
 
 // Handle grid cells generation
+let cells = [];
 function genGrid() {
     generate.addEventListener('click', () => {
         let pattern = new RegExp('^[1-9][0-9]?$|^100$');
@@ -460,6 +462,7 @@ function genGrid() {
                 alertMsg.style.color = 'green';
                 cellNum.disabled = true;
                 generate.style.pointerEvents = 'none';
+                collectCells();
             } else {
                 alertMsg.innerHTML = 'Please insert a whole number from 1 to 100!';
                 alertMsg.style.color = 'red';
@@ -537,5 +540,114 @@ function swapPalettes() {
                 cloneSets[j].style.display = 'none';
             }
         });
+    }
+}
+
+// Handle legacy palette generation
+function mkLegPlt() {
+    mkContainers();
+    mkPlt();
+    mkLegSwatches();
+}
+
+// Handle custom swatch set container generation generation
+function mkContainers() {
+    for (let i = 0; i < 8; i++) {
+        let cont = document.createElement('div');
+        plt8bit.appendChild(cont).className = 'swatch-container';
+    }
+    for (let j = 0; j < 3; j++) {
+        let cont = document.createElement('div');
+        plt16bit.appendChild(cont).className = 'swatch-container';
+    }
+}
+
+// Populate swatch containers with palettes
+function mkPlt() {
+    const swatchConts = document.querySelectorAll('.swatch-container');
+    for (e of swatchConts) {
+        for (let i = 0; i < 1; i++) {
+            let name = document.createElement('p');
+            let plt = document.createElement('div');
+            e.appendChild(name).className = 'plt-name';
+            e.appendChild(plt).className = 'palette';
+        }
+    }
+}
+
+// Store legacy swatch properties
+let swatchProps = [
+    {
+        id: 'tltx',
+        name: 'Teletext',
+        colors: ["#000000", "#0001fb", "#fd0200", "#ff00fc", "#00ff01", "#01ffff", "#fffe00", "#ffffff"]
+    },
+    {
+        id: 'fruitII',
+        name: 'Fruit II',
+        colors: ["#000000", "#d22beb", "#12bc00", "#2099f4", "#de6808", "#f4f3de"],
+    },
+    {
+        id: 'bic20',
+        name: 'BIC-20',
+        colors: ["#ffffff", "#772a22", "#772a22", "#a860b6", "#1c8026", "#40318c", "#bfcd75", "#e9b488", "#b86962", "#000000"] 
+    },
+    {
+        id: 'cmd64',
+        name: 'Commander 64',
+        colors: ["#000000", "#fffffb", "#893932", "#68b5bd", "#903d99", "#55a04b", "#40318c", "#bfcd78", "#8a5529", "#594200", "#b76a60", "#514f50", "#787878", "#8ee191", "#786ac2", "#9f9f9f"]
+    },
+    {
+        id: 'xcspec',
+        name: 'XC Specter',
+        colors: ["#000000", "#0500c5", "#c20000", "#bb01ba", "#bb01ba", "#02bfc5", "#c4be04", "#bfc2b9", "#000200", "#0200fc", "#fa0300", "#ff00fc", "#00ff00", "#01fffc", "#ffff00", "#ffffff"] 
+    },
+    {
+        id: 'mazsys',
+        name: 'MAZ Systems',
+        colors: ["#3db94b", "#76d079", "#5455eb", "#7978f8", "#b65e52", "#67dce5", "#dd6459", "#fc8977", "#c9c55a", "#ddd187", "#3da04e", "#b566b5", "#d3c7d5", "#ffffff"]
+    },
+    {
+        id: 'johnno5',
+        name: 'Jonson NO5',
+        colors: ["#000000", "#fe0100", "#03fe03", "#fffc01", "#0200f9", "#ff00f9", "#02feff", "#fffeff", "#bbbbbb", "#df7575", "#77de75", "#dfdb78", "#7b76da", "#de77ed", "#baffff", "#f2bb06"]
+    },
+    {
+        id: 'sgrcpc',
+        name: 'Sugar CPC',
+        colors: ["#000000", "#00007f", "#810000", "#7d0080", "#008200", "#f70400", "#00827c", "#7e8003", "#7f7f7d", "#807eff", "#ff8000", "#fd7f80", "#7eff7e", "#7cfffe", "#fffe7f", "#fffffb"]
+    },
+    {
+        id: 'ega',
+        name: 'EGA',
+        colors: ["#000000", "#580002", "#005602", "#ad0000", "#525700", "#fb0009", "#565455", "#5556a9", "#a85700", "#a95553", "#aa54ad", "#56aa00", "#ff5500", "#abaaa5", "#ffaa59", "#ffffff"]
+    },
+    {
+        id: 'nogasu',
+        name: 'Nogasu ST',
+        colors: ["#000000", "#480000", "#b60000", "#244800", "#da0000", "#484800", "#484848", "#b64824", "#6d6db6", "#489100", "#b66d48", "#ff4824", "#ff6d48", "#9191b6", "#ffb66d", "#ffdada"]
+    },
+    {
+        id: 'cmdfren',
+        name: 'Commander Friend',
+        colors: ["#000000", "#331100", "#112200", "#112200", "#333333", "#663311", "#335500", "#dd1111", "#665555", "#aa3322", "#448811", "#666688", "#aa6644", "#ff4422", "#997788", "#779933", "#779999", "#ff6644", "#cc8866", "#cc8866", "#99aaaa", "#88bb77", "#ff9944", "#aacc33", "#bbbbbb", "#ffbb55", "#ffaa88", "#bbddee", "#eecccc", "#ffdd66", "#ffff99", "#ffeedd"]
+    }
+]
+
+// Create legacy swatches
+function mkLegSwatches() {
+    const palettes = Array.prototype.slice.call(document.querySelectorAll('.palette'));
+    for (let i = 0; i < palettes.length; i++) {
+        palettes[i].id = swatchProps[i].id;
+        palettes[i].title = swatchProps[i].name;
+        for (let j = 0; j < swatchProps[i].colors.length; j++) {
+            let swatch = document.createElement('div');
+            palettes[i].appendChild(swatch).className = 'legacy-swatch';
+        }
+        let sets = Array.prototype.slice.call(palettes[i].childNodes);
+        for (let k = 0; k < sets.length; k++) {
+            sets[k].style.backgroundColor = swatchProps[i].colors[k];
+            sets[k].title = swatchProps[i].colors[k];
+        }
     }
 }
