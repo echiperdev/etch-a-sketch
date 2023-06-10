@@ -82,8 +82,6 @@ window.onload = (e) => {
     genGrid();
     resetGrid();
     mkSwatches();
-    switchTips();
-    switchErs();
     swapPalettes();
     mkLegPlt();
 }
@@ -446,7 +444,6 @@ const slideH = (e) => {
 }
 
 // Handle grid cells generation
-let cells = [];
 function genGrid() {
     generate.addEventListener('click', () => {
         let pattern = new RegExp('^[1-9][0-9]?$|^100$');
@@ -462,7 +459,6 @@ function genGrid() {
                 alertMsg.style.color = 'green';
                 cellNum.disabled = true;
                 generate.style.pointerEvents = 'none';
-                collectCells();
             } else {
                 alertMsg.innerHTML = 'Please insert a whole number from 1 to 100!';
                 alertMsg.style.color = 'red';
@@ -502,28 +498,6 @@ function mkSwatches() {
         swatch.style.width = '1rem';
         swatch.style.height = '1rem'
     })
-}
-
-// Handle tip switch
-function switchTips() {
-    const btns = [crayon, brush, wand];
-    const modes = ['Solid', 'Watercolor', 'Multicolor'];
-    for (let i = 0; i < btns.length; i++) {
-        btns[i].addEventListener('click', () => {
-            clrMode.innerHTML = modes[i];
-        })
-    }
-}
-
-// Handle eraser switch
-function switchErs() {
-    const btns = [hard, soft];
-    const modes = ['Hard', 'Soft'];
-    for (let i = 0; i < btns.length; i++) {
-        btns[i].addEventListener('click', () => {
-            clrMode.innerHTML = modes[i];
-        })
-    }
 }
 
 // Handle palette set switch
