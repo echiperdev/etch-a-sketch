@@ -46,9 +46,10 @@ let shadeParent = document.getElementById('shade-parent');
 let hueParent = document.getElementById('hue-parent');
 let colors = ['red', '#ff0', 'lime', 'cyan', 'blue', '#f0f', 'red'];
 let hexCode = document.getElementById('hex-code');
-let clrMode = document.getElementById('clr-mode');
-let addSwatch = document.getElementById('add-swatch');
 let currentColor = document.getElementById('current-color');
+let clrMode = document.getElementById('clr-mode');
+let modeSwitch = document.querySelector('.switch');
+let addSwatch = document.getElementById('add-swatch');
 let pltDisplay = document.querySelector('.palette-display');
 let pltCustom = document.querySelector('.palettes-custom');
 let swatchHouse = document.querySelector('.swatch-house');
@@ -57,6 +58,30 @@ let plt16bit = document.querySelector('.palettes-16-bit');
 let alerts = document.querySelector('.alerts');
 let alertMsg = document.getElementById('alert-msg');
 let tabletWidth = window.matchMedia('(min-width: 821px)');
+
+// Store color mode characteristics
+const colorModes = [
+    {
+        btn: crayon,
+        name: 'Solid',
+    },
+    {
+        btn: brush,
+        name: 'Watercolor',
+    },
+    {
+        btn: wand,
+        name: 'Multicolor',
+    },
+    {
+        btn: hard,
+        name: 'Hard',
+    },
+    {
+        btn: soft,
+        soft: 'Soft',
+    }
+];
 
 // Page load functionality
 window.onload = (e) => {
@@ -76,6 +101,7 @@ window.onload = (e) => {
     initShadeGrd('#1d58b6');
     hexCode.innerHTML = '#1d58b6';
     currentColor.style.backgroundColor = '#1d58b6';
+    activeClr.style.backgroundColor = '#1d58b6';
     dragShade();
     slideHue();
     clickSH();
@@ -84,6 +110,7 @@ window.onload = (e) => {
     mkSwatches();
     swapPalettes();
     mkLegPlt();
+    switchTools();
 }
 
 // Store arrays of parent buttons and image sources
@@ -109,6 +136,7 @@ function mkBtns() {
 function defaultTool() {
     crayon.parentNode.style.border = '2px solid goldenrod';
     crayon.parentNode.style.borderRadius = '4px';
+    clrMode.innerHTML = colorModes[0].name;
 }
 
 // Store button parents by category
@@ -300,6 +328,7 @@ function setShadePicker() {
     let data = shadeCtx.getImageData(x,y,1,1)['data'];
     hexCode.innerText = `${rgbToHex(data[0], data[1], data[2])}`;
     currentColor.style.backgroundColor = `${rgbToHex(data[0], data[1], data[2])}`;
+    activeClr.style.backgroundColor = `${rgbToHex(data[0], data[1], data[2])}`;
 }
 
 // Set hue sliders positions
@@ -472,6 +501,8 @@ function mkCells(rows, columns) {
     grid.style.setProperty('--grid-columns', columns);
     for (let i = 0; i < (rows * columns); i++) {
         let cell = document.createElement('div');
+        cell.addEventListener('mouseover', colorCell);
+        cell.addEventListener('mousedown', colorCell);
         grid.appendChild(cell).className = 'grid-cell';
     }
 }
@@ -490,13 +521,18 @@ function resetGrid() {
 }
 
 // Handle custom swatches
+let customSwatches = [];
 function mkSwatches() {
     addSwatch.addEventListener('click', () => {
         let swatch = document.createElement('div');
         swatchHouse.appendChild(swatch).className = 'custom-swatch';
         swatch.style.backgroundColor = `${hexCode.innerText}`;
         swatch.style.width = '1rem';
-        swatch.style.height = '1rem'
+        swatch.style.height = '1rem';
+        customSwatches.push(swatch);
+        console.log(customSwatches);
+        pltDisplay.style.display = 'flex';
+        pltCustom.style.display = 'flex';
     })
 }
 
@@ -543,7 +579,6 @@ function mkPlt() {
         for (let i = 0; i < 1; i++) {
             let name = document.createElement('p');
             let plt = document.createElement('div');
-            e.appendChild(name).className = 'plt-name';
             e.appendChild(plt).className = 'palette';
         }
     }
@@ -609,11 +644,24 @@ let swatchProps = [
 ]
 
 // Create legacy swatches
+let legSwatches = [];
 function mkLegSwatches() {
     const palettes = Array.prototype.slice.call(document.querySelectorAll('.palette'));
     for (let i = 0; i < palettes.length; i++) {
         palettes[i].id = swatchProps[i].id;
         palettes[i].title = swatchProps[i].name;
+        palettes[i].addEventListener('click', () => {
+            palettes[i].classList.add('active');
+            palettes[i].style.border = '2px solid goldenrod';
+            legSwatches = Array.from(swatchProps[i].colors);
+            console.log(legSwatches);
+            let clones = [...palettes];
+            clones.splice(i, 1);
+            for (let l = 0; l < clones.length; l++) {
+                clones[l].classList.add('inactive');
+                clones[l].style.border = 'none';
+            }
+        })
         for (let j = 0; j < swatchProps[i].colors.length; j++) {
             let swatch = document.createElement('div');
             palettes[i].appendChild(swatch).className = 'legacy-swatch';
@@ -624,4 +672,51 @@ function mkLegSwatches() {
             sets[k].title = swatchProps[i].colors[k];
         }
     }
+}
+
+// Handle mode change
+function switchTools() {
+    const tools = [];
+    for (let i = 0; i < colorModes.length; i++) {
+        tools.push(colorModes[i].btn);
+    }
+    for (let j = 0; j < tools.length; j++) {
+        tools[j].addEventListener('click', () => {
+            clrMode.innerHTML = colorModes[j].name;
+        })
+    }
+}
+
+// Handle grid cell coloration
+let tracker = -1;
+function colorCell(e) {
+    if (clrMode.innerHTML === 'Solid') {
+        e.target.style.backgroundColor = `${hexCode.innerHTML}`;
+        e.target.style.opacity = '1';
+    } else if (clrMode.innerHTML === 'Watercolor') {
+        if (e.target.style.opacity <= 1) {
+            e.target.style.opacity = +e.target.style.opacity + 0.2;
+            e.target.style.backgroundColor = `${hexCode.innerHTML}`;
+        }
+    } else if (clrMode.innerHTML === 'Multicolor') {
+        if (!modeSwitch.checked) {
+            alertMsg.innerHTML = 'Linear multicolor';
+            alertMsg.style.color = 'green';
+            if (pltCustom.style.display == 'flex') {
+                //
+            } else {
+                e.target.style.backgroundColor = `${linearClr()}`;
+            }
+        } else {
+            //
+        }
+    }
+}
+
+let initial = -1;
+function linearClr() {
+    while (true) {
+        const index = ++initial % legSwatches.length;
+        return legSwatches[index];
+    } 
 }
