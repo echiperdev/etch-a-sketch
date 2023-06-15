@@ -519,6 +519,7 @@ function clearGrid() {
         console.log(gridCells);
         for (let i = 0; i < gridCells.length; i++) {
             gridCells[i].style.backgroundColor = '';
+            gridCells[i].style.opacity = '1.0';
         }
     });
 }
