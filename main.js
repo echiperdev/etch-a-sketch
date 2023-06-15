@@ -106,6 +106,7 @@ window.onload = (e) => {
     slideHue();
     clickSH();
     genGrid();
+    clearGrid();
     resetGrid();
     mkSwatches();
     swapPalettes();
@@ -496,6 +497,10 @@ function genGrid() {
     })
 }
 
+// Store grid cells
+let gridCells = [];
+
+// Create and append grid cells
 function mkCells(rows, columns) {
     grid.style.setProperty('--grid-rows', rows);
     grid.style.setProperty('--grid-columns', columns);
@@ -504,7 +509,18 @@ function mkCells(rows, columns) {
         cell.addEventListener('mouseover', colorCell);
         cell.addEventListener('mousedown', colorCell);
         grid.appendChild(cell).className = 'grid-cell';
+        gridCells.push(cell);
     }
+}
+
+// Handle grid cell background color reset
+function clearGrid() {
+    clear.addEventListener('click', () => {
+        console.log(gridCells);
+        for (let i = 0; i < gridCells.length; i++) {
+            gridCells[i].style.backgroundColor = '';
+        }
+    });
 }
 
 // Handle grid area reset
