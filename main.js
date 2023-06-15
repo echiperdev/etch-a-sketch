@@ -48,7 +48,7 @@ let colors = ['red', '#ff0', 'lime', 'cyan', 'blue', '#f0f', 'red'];
 let hexCode = document.getElementById('hex-code');
 let currentColor = document.getElementById('current-color');
 let clrMode = document.getElementById('clr-mode');
-let modeSwitch = document.querySelector('.switch');
+let modeSwitch = document.getElementById('mode-switch');
 let addSwatch = document.getElementById('add-swatch');
 let pltDisplay = document.querySelector('.palette-display');
 let pltCustom = document.querySelector('.palettes-custom');
@@ -698,20 +698,29 @@ function colorCell(e) {
             e.target.style.backgroundColor = `${hexCode.innerHTML}`;
         }
     } else if (clrMode.innerHTML === 'Multicolor') {
+        alertMsg.style.color = 'green';
         if (!modeSwitch.checked) {
             alertMsg.innerHTML = 'Linear multicolor';
-            alertMsg.style.color = 'green';
             e.target.style.backgroundColor = `${linearClr()}`;
         } else {
-            //
+            alertMsg.innerHTML = 'Random multicolor';
+            e.target.style.backgroundColor = `${randomClr()}`;
         }
     }
 }
 
+// Handle linear coloring
 let initial = -1;
 function linearClr() {
     while (true) {
         const index = ++initial % swatches.length;
         return swatches[index];
     } 
+}
+
+// Handle random coloring
+function randomClr() {
+    while (true) {
+        return swatches[Math.floor(Math.random() * swatches.length)];
+    }
 }
