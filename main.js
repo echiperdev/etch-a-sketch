@@ -520,8 +520,10 @@ function resetGrid() {
     })
 }
 
+// Store swatch colors
+let swatches = [];
+
 // Handle custom swatches
-let customSwatches = [];
 function mkSwatches() {
     addSwatch.addEventListener('click', () => {
         let swatch = document.createElement('div');
@@ -529,8 +531,7 @@ function mkSwatches() {
         swatch.style.backgroundColor = `${hexCode.innerText}`;
         swatch.style.width = '1rem';
         swatch.style.height = '1rem';
-        customSwatches.push(swatch);
-        console.log(customSwatches);
+        swatches.push(swatch.style.backgroundColor);
         pltDisplay.style.display = 'flex';
         pltCustom.style.display = 'flex';
     })
@@ -644,7 +645,6 @@ let swatchProps = [
 ]
 
 // Create legacy swatches
-let legSwatches = [];
 function mkLegSwatches() {
     const palettes = Array.prototype.slice.call(document.querySelectorAll('.palette'));
     for (let i = 0; i < palettes.length; i++) {
@@ -653,8 +653,7 @@ function mkLegSwatches() {
         palettes[i].addEventListener('click', () => {
             palettes[i].classList.add('active');
             palettes[i].style.border = '2px solid goldenrod';
-            legSwatches = Array.from(swatchProps[i].colors);
-            console.log(legSwatches);
+            swatches = Array.from(swatchProps[i].colors);
             let clones = [...palettes];
             clones.splice(i, 1);
             for (let l = 0; l < clones.length; l++) {
@@ -702,11 +701,7 @@ function colorCell(e) {
         if (!modeSwitch.checked) {
             alertMsg.innerHTML = 'Linear multicolor';
             alertMsg.style.color = 'green';
-            if (pltCustom.style.display == 'flex') {
-                //
-            } else {
-                e.target.style.backgroundColor = `${linearClr()}`;
-            }
+            e.target.style.backgroundColor = `${linearClr()}`;
         } else {
             //
         }
@@ -716,7 +711,7 @@ function colorCell(e) {
 let initial = -1;
 function linearClr() {
     while (true) {
-        const index = ++initial % legSwatches.length;
-        return legSwatches[index];
+        const index = ++initial % swatches.length;
+        return swatches[index];
     } 
 }
