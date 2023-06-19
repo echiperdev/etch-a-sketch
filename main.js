@@ -138,7 +138,7 @@ function mkBtns() {
 // Set crayon as default tool
 function defaultTool() {
     crayon.parentNode.style.border = '2px solid goldenrod';
-    crayon.parentNode.style.borderRadius = '4px';
+    crayon.parentNode.style.borderRadius = '52%';
     clrMode.innerHTML = colorModes[0].name;
 }
 
@@ -163,7 +163,7 @@ function toolSelect() {
             let cloneParents = [...activeBtn];
             cloneParents.splice(i, 1);
             activeBtn[i].style.border = '2px solid goldenrod';
-            activeBtn[i].style.borderRadius = '4px';
+            activeBtn[i].style.borderRadius = '52%';
             activeBtn[i].setAttribute('class', 'active');
             for (let j = 0; j < cloneParents.length; j++) {
                 cloneParents[j].style.border = 'none';
@@ -177,7 +177,7 @@ function toolSelect() {
                 let cloneParents = [...activeBtn];
                 cloneParents.splice(i, 1);
                 activeBtn[i].style.border = '2px solid goldenrod';
-                activeBtn[i].style.borderRadius = '2px solid goldenrod';
+                activeBtn[i].style.borderRadius = '50%';
                 activeBtn[i].setAttribute('class', 'active');
                 for (let l = 0; l < cloneParents.length; l++) {
                     cloneParents[l].style.border = 'none';
