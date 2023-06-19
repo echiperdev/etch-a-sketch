@@ -519,7 +519,7 @@ function clearGrid() {
         console.log(gridCells);
         for (let i = 0; i < gridCells.length; i++) {
             gridCells[i].style.backgroundColor = '';
-            gridCells[i].style.opacity = '1.0';
+            gridCells[i].style.opacity = '';
         }
     });
 }
@@ -704,11 +704,10 @@ function switchTools() {
 }
 
 // Handle grid cell coloration
-let tracker = -1;
 function colorCell(e) {
     if (clrMode.innerHTML === 'Solid') {
         e.target.style.backgroundColor = `${hexCode.innerHTML}`;
-        e.target.style.opacity = '1';
+        e.target.style.opacity = '1.0';
     } else if (clrMode.innerHTML === 'Watercolor') {
         if (e.target.style.opacity <= 1) {
             e.target.style.opacity = +e.target.style.opacity + 0.2;
@@ -717,13 +716,86 @@ function colorCell(e) {
     } else if (clrMode.innerHTML === 'Multicolor') {
         alertMsg.style.color = 'green';
         if (!modeSwitch.checked) {
-            alertMsg.innerHTML = 'Linear multicolor';
             e.target.style.backgroundColor = `${linearClr()}`;
         } else {
-            alertMsg.innerHTML = 'Random multicolor';
             e.target.style.backgroundColor = `${randomClr()}`;
         }
+    } else if (clrMode.innerHTML === 'Hard') {
+        e.target.style.backgroundColor = '';
+        e.target.style.opacity = '';
+    } else {
+        let bgClr = e.target.style.backgroundColor;
+        let r = bgClr.substring(
+            bgClr.indexOf("(") + 1, 
+            bgClr.indexOf(",")
+        );
+        let g = bgClr.substring(
+            bgClr.indexOf(" ") + 1,
+            bgClr.lastIndexOf(",")
+        );
+        let b = bgClr.substring(
+            bgClr.lastIndexOf(" ") + 1,
+            bgClr.lastIndexOf(")")
+        );
+        console.log(e.target.style.opacity);
+        console.log(e.target.style.backgroundColor)
+        let hsl = rgbToHsl(r, g, b);
+        let l = hsl.pop();
+        console.log(l);
+        let lum = 0;
+        if (e.target.style.backgroundColor != '') {
+             if (e.target.style.opacity <= '0.2') {
+                lum = 100 - l;
+                e.target.style.opacity = '1.0';
+            } else if (e.target.style.opacity > '0.2' && e.target.style.opacity <= '0.4') {
+                lum += l/2;
+                e.target.style.opacity = +e.target.style.opacity + 0.1;
+            } else if (e.target.style.opacity > '0.4' && e.target.style.opacity <= '0.6') {
+                lum += l/3.5;
+                e.target.style.opacity = +e.target.style.opacity + 0.06;
+            } else if (e.target.style.opacity > '0.6' && e.target.style.opacity <= '0.8') {
+                lum += l/4;
+                e.target.style.opacity = +e.target.style.opacity + 0.02;
+            } else if (e.target.style.opacity > '0.8') {
+                lum += (100 - l) / 5;
+                if (lum > 90) {
+                    lum = 100 - l;
+                }
+            }
+            e.target.style.backgroundColor = `hsl(${hsl[0]}, ${hsl[1]}%, ${l + lum}%)`;
+        }
     }
+}
+
+// Convert rgb to HSL
+function rgbToHsl(r, g, b) {
+    r /= 255;
+    g /= 255;
+    b /= 255;
+    let cmin = Math.min(r, g, b),
+        cmax = Math.max(r, g, b),
+        dif = cmax - cmin,
+        h = 0,
+        s = 0,
+        l = 0;
+    if (dif == 0) {
+        h = 0;
+    } else if (cmax == r) {
+        h = ((g - b) / dif) % 6;
+    } else if (cmax == g) {
+        h = (b - r) / dif + 2;
+    } else {
+        h = (r - g) / dif + 4;
+    }
+    h = Math.round(h * 60);
+    if (h < 0) {
+        h += 360;
+    }
+    l = (cmax + cmin) / 2;
+    s = dif == 0 ? 0 : dif / (1 - Math.abs(2 * l - 1));
+    s = +(s * 100).toFixed(1);
+    l = +(l * 100).toFixed(1);
+    return [h, s, l];
 }
 
 // Handle linear coloring

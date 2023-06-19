@@ -327,6 +327,7 @@ h2 {
     padding: .5rem;
     align-self: flex-end;
     display: flex;
+    flex: 0;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -383,7 +384,7 @@ h2 {
 }
 
 .grid-cell {
-    border: 1px solid #e0e5ec;
+    border: 1px solid hsl(215, 24%, 90%);
     border-top: none;
     border-left: none;
 }
