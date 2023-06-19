@@ -35,6 +35,8 @@ let reset = document.getElementById('reset');
 let grid = document.getElementById('grid');
 let propsCont = document.getElementById('properties-container');
 let propBox = document.querySelector('.properties-box');
+let colorPickerContainer = document.querySelector('.color-picker-container');
+let colorPicker = document.querySelector('.color-picker');
 let shadeCnv = document.getElementById('shade-canvas');
 let hueCnv = document.getElementById('hue-canvas');
 let shadeCtx = shadeCnv.getContext('2d');
@@ -251,19 +253,22 @@ function hideInfo() {
 
 // Set color selection button behavior
 function toggleClr() {
-    activeClr.addEventListener('click', () => {
-        if (activeClrCont.style.display !== 'none') {
-            activeClrCont.style.display = 'none';
-            propsCont.appendChild(propBox.parentNode.removeChild(propBox));
-            toolProps.style.pointerEvents = 'auto';
-        } else {
-            activeClrCont.appendChild(propsCont.removeChild(propBox));
-            activeClrCont.style.display = 'inline-block';
-            activeClrCont.style.marginTop = '1rem';
-            activeClrCont.style.right = '-190px';
-            toolProps.style.pointerEvents = 'none';
-        }
-    });
+    activeClr.addEventListener('click', swapPickerParents);
+}
+
+// Handle swapping color picker parents
+function swapPickerParents() {
+    if (activeClrCont.style.display !== 'none') {
+        activeClrCont.style.display = 'none';
+        colorPickerContainer.appendChild(colorPicker.parentNode.removeChild(colorPicker));
+        toolProps.style.pointerEvents = 'auto';
+    } else {
+        activeClrCont.appendChild(colorPickerContainer.removeChild(colorPicker));
+        activeClrCont.style.display = 'inline-block';
+        activeClrCont.style.marginTop = '1rem';
+        activeClrCont.style.right = '-190px';
+        toolProps.style.pointerEvents = 'none';
+    }
 }
 
 // Initialize hue gradient

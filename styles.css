@@ -98,6 +98,13 @@ h2 {
     z-index: 1;
 }
 
+.active-clr-content {
+    padding: .5rem;
+    background-color: #e0e5ec;
+    margin-top: .5rem;
+    border-radius: 3px;
+}
+
 .btn {
     height: 2rem;
     width: 2rem;
