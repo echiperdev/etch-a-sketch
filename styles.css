@@ -168,7 +168,7 @@ h2 {
 }
 
 .showcase {
-    height: auto;
+    height: 100%;
     width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -327,7 +327,6 @@ h2 {
     padding: .5rem;
     align-self: flex-end;
     display: flex;
-    flex: 0;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -717,7 +716,7 @@ input:checked + .slider:before {
 
 #alert-box {
     margin: .5rem;
-    width: 40%;
+    width: 30%;
     height: auto;
     display: flex;
     justify-content: center;
@@ -740,6 +739,11 @@ input:checked + .slider:before {
 .footer {
     height: 1.5rem;
     margin-top: 1.5rem;
+}
+
+.footer > p {
+    height: 100%;
+    text-align: center;
 }
 
 @media screen and (max-width: 820px) {

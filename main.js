@@ -255,11 +255,13 @@ function toggleClr() {
         if (activeClrCont.style.display !== 'none') {
             activeClrCont.style.display = 'none';
             propsCont.appendChild(propBox.parentNode.removeChild(propBox));
+            toolProps.style.pointerEvents = 'auto';
         } else {
             activeClrCont.appendChild(propsCont.removeChild(propBox));
             activeClrCont.style.display = 'inline-block';
             activeClrCont.style.marginTop = '1rem';
             activeClrCont.style.right = '-190px';
+            toolProps.style.pointerEvents = 'none';
         }
     });
 }
@@ -545,6 +547,9 @@ function mkSwatches() {
     addSwatch.addEventListener('click', () => {
         let swatch = document.createElement('div');
         swatchHouse.appendChild(swatch).className = 'custom-swatch';
+        swatch.addEventListener('click', () => {
+            swatchHouse.removeChild(swatch);
+        })
         swatch.style.backgroundColor = `${hexCode.innerText}`;
         swatch.style.width = '1rem';
         swatch.style.height = '1rem';
@@ -668,14 +673,18 @@ function mkLegSwatches() {
         palettes[i].id = swatchProps[i].id;
         palettes[i].title = swatchProps[i].name;
         palettes[i].addEventListener('click', () => {
-            palettes[i].classList.add('active');
-            palettes[i].style.border = '2px solid goldenrod';
-            swatches = Array.from(swatchProps[i].colors);
-            let clones = [...palettes];
-            clones.splice(i, 1);
-            for (let l = 0; l < clones.length; l++) {
-                clones[l].classList.add('inactive');
-                clones[l].style.border = 'none';
+            if (swatches.length === 0) {
+                palettes[i].classList.add('active');
+                palettes[i].style.border = '2px solid goldenrod';
+                swatches = Array.from(swatchProps[i].colors);
+                alertMsg.innerHTML = 'Clear the custom swatches!'
+                alertMsg.style.color = 'red';
+                let clones = [...palettes];
+                clones.splice(i, 1);
+                for (let l = 0; l < clones.length; l++) {
+                    clones[l].classList.add('inactive');
+                    clones[l].style.border = 'none';
+                }
             }
         })
         for (let j = 0; j < swatchProps[i].colors.length; j++) {
