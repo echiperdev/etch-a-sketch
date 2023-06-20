@@ -821,7 +821,7 @@ input:checked + .slider:before {
 
     .title {
         font-size: 12px;
-    } /* Placeholder */
+    }
 
     .toolbar {
         padding: 3px;
