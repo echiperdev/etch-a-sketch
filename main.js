@@ -574,6 +574,7 @@ function swapPalettes() {
     const sets = [pltCustom, plt8bit, plt16bit];
     for (let i = 0; i < btns.length; i++) {
         btns[i].addEventListener('click', () => {
+            swatches = [];
             pltDisplay.style.display = 'flex';
             sets[i].style.display = 'flex';
             let cloneSets = [...sets];
@@ -682,18 +683,14 @@ function mkLegSwatches() {
         palettes[i].id = swatchProps[i].id;
         palettes[i].title = swatchProps[i].name;
         palettes[i].addEventListener('click', () => {
-            if (swatches.length === 0) {
-                palettes[i].classList.add('active');
-                palettes[i].style.border = '2px solid goldenrod';
-                swatches = Array.from(swatchProps[i].colors);
-                alertMsg.innerHTML = 'Clear the custom swatches!'
-                alertMsg.style.color = 'red';
-                let clones = [...palettes];
-                clones.splice(i, 1);
-                for (let l = 0; l < clones.length; l++) {
-                    clones[l].classList.add('inactive');
-                    clones[l].style.border = 'none';
-                }
+            palettes[i].classList.add('active');
+            palettes[i].style.border = '2px solid goldenrod';
+            swatches = Array.from(swatchProps[i].colors);
+            let clones = [...palettes];
+            clones.splice(i, 1);
+            for (let l = 0; l < clones.length; l++) {
+                clones[l].classList.add('inactive');
+                clones[l].style.border = 'none';
             }
         })
         for (let j = 0; j < swatchProps[i].colors.length; j++) {
