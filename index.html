@@ -10,9 +10,17 @@
     <title>Etch-a-Sketch</title>
 </head>
 <body>
+
+    <!-- Contains title and application app-manager -->
+
     <div class="header">
         <div class="title" title="Etch-a-Sketch">Etch-a-Sketch</div>
+
+        <!-- Contains toolbar and modal buttons -->
+
         <div class="app-manager">
+
+            <!-- Contains color, tip, eraser and palette selection buttons -->
             <div class="toolbar">
                 <div class="clr-slct">
                     <a href="#" class="btn" id="active-clr-parent">
@@ -58,15 +66,20 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Contains modal-toggling buttons -->
             <div class="modal-btns">
                 <a href="#" class="btn" id="tool-props" title="Tool Properties"></a>
                 <a href="#" class="btn" id="info" title="Information"></a>
             </div>
         </div>
     </div>
+
     <div class="hero">
         <div class="showcase">
             <div class="showcase-left"></div>
+
+            <!-- Contains information and properties modals, and grid container -->
             <div class="showcase-center">
                 <div class="modal" id="info-modal">
                     <div class="info-content">
@@ -205,8 +218,12 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Holds properties container -->
             <div class="showcase-right">
                 <div id="properties-container">
+
+                    <!-- Contains color picking tool and palette containers -->
                     <div class="properties-box">
                         <div class="color-picker-container">
                             <div class="color-picker">
@@ -259,6 +276,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Displays alerts -->
         <div class="alerts">
             <h3>ALERTS</h3>
             <div id="alert-box">
@@ -266,6 +285,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Holds copyright statement -->
     <div class="footer">
         <p>&#169; echiperdev 2023</p>
     </div>

@@ -1,4 +1,4 @@
-// Import responsive elements
+// Variables storing responsive page elements
 let title = document.querySelector('.title');
 let clrSlct = document.querySelector('.clr-slct');
 let activeClr = document.getElementById('active-clr');
@@ -65,7 +65,7 @@ let resCaret = document.getElementById('res-caret');
 let bioDesc = document.getElementById('bio-desc');
 let resDesc = document.getElementById('res-desc');
 
-// Store color mode characteristics
+// ** Array colorModes ** Stores color mode characteristics as anonnymous objects
 const colorModes = [
     {
         btn: crayon,
@@ -89,7 +89,7 @@ const colorModes = [
     }
 ];
 
-// Page load functionality
+// ** Anonymous function triggered on window load ** Handles page load functionality
 window.onload = (e) => {
     activeClrCont.style.display = 'none';
     propsCont.style.display = 'none';
@@ -123,13 +123,13 @@ window.onload = (e) => {
     toggleDesc();
 }
 
-// Store arrays of parent buttons and image sources
+// ** Object initializer 'btns' ** Stores arrays of parent buttons and image sources
 let btns = {
     name: [crayon, brush, wand, hard, soft, customPlt, toolProps, info, generate, clear, reset],
     src: ['/img/crayon.svg', '/img/brush.svg', '/img/wand.svg', '/img/hard.svg', '/img/soft.svg', '/img/custom_swatch.svg', '/img/tool_properties.svg', '/img/information.svg', '/img/create.svg', '/img/clear.svg', '/img/reset.svg']
 };
 
-// Populate buttons with icons
+// ** Function 'mkBtns' ** Populates buttons with icons
 function mkBtns() {
     for (let i = 0; i < btns.name.length; i++) {
         let img = document.createElement('img');
@@ -142,14 +142,14 @@ function mkBtns() {
     }
 }
 
-// Set crayon as default tool
+// ** Function 'defaultTool' ** Sets crayon as default tool
 function defaultTool() {
     crayon.parentNode.style.border = '2px solid goldenrod';
     crayon.parentNode.style.borderRadius = '52%';
     clrMode.innerHTML = colorModes[0].name;
 }
 
-// Store button parents by category
+// ** Array 'toolBtns' ** Stores button parents by category
 let toolBtns = [
     {
         parents: [activeTip, altTip1, altTip2]
@@ -162,7 +162,7 @@ let toolBtns = [
     }
 ];
 
-// Handle active tool selection
+// ** Function 'toolSelect' ** Handles active tool selection
 let activeBtn = [activeTip, activeErs, activePlt];
 function toolSelect() {
     for (let i = 0; i < toolBtns.length; i++) {
@@ -195,7 +195,7 @@ function toolSelect() {
     }
 }
 
-// Populate properties modal based on device width
+// ** Function 'initModal' ** Populates properties modal based on device width
 function initModal() {
     if (tabletWidth.matches) { // if page is wider than 820px
         toggleProps();
@@ -210,7 +210,7 @@ function initModal() {
     }
 }
 
-// Reveals properties
+// ** Function 'toggleProps' ** Reveals properties container
 function toggleProps() {
     toolProps.addEventListener('click', () => {
         if (propsCont.style.display !== 'none') {
@@ -221,7 +221,7 @@ function toggleProps() {
     });
 }
 
-// Reveals properties modal
+// ** Function 'revealModal' ** Reveals properties modal
 function revealModal() {
     toolProps.addEventListener('click', () => {
         if (propsModal.style.display !== 'none') {
@@ -235,7 +235,7 @@ function revealModal() {
     })
 }
 
-// Hides properties modal
+// ** Function 'hideModal' ** Hides properties modal
 function hideModal() {
     closeModal.addEventListener('click', () => {
         hero.appendChild(modalBody.removeChild(alerts));
@@ -244,26 +244,26 @@ function hideModal() {
     });
 }
 
-// Reveal information modal
+// ** Function 'showInfo' ** Reveals information modal
 function showInfo() {
     info.addEventListener('click', () => {
         infoModal.style.display = 'flex';
     });
 }
 
-// Hide information modal
+// ** Function 'hideInfo' ** Hides information modal
 function hideInfo() {
     closeInfo.addEventListener('click', () => {
         infoModal.style.display = 'none';
     });
 }
 
-// Set color selection button behavior
+// ** Function 'toggleClr' ** Sets color selection button behavior
 function toggleClr() {
     activeClr.addEventListener('click', swapPickerParents);
 }
 
-// Handle swapping color picker parents
+// ** Function 'swapPickerParents' ** Handles swapping color picker parents
 function swapPickerParents() {
     if (activeClrCont.style.display !== 'none') {
         activeClrCont.style.display = 'none';
@@ -278,7 +278,7 @@ function swapPickerParents() {
     }
 }
 
-// Initialize hue gradient
+// ** Function 'initHueGrd' ** Initializes hue gradient
 function initHueGrd() {
     let hueGrd = hueCtx.createLinearGradient(0,0,0,300);
     hueGrd.addColorStop(0, 'red');
@@ -289,7 +289,7 @@ function initHueGrd() {
     hueCtx.fillRect(0,0,300,300);
 }
 
-// Initialize horizontal hue gradient
+// ** Function 'initHueGrdH' ** Initializes horizontal hue gradient
 function initHueGrdH() {
     let hueGrd = hueCtx.createLinearGradient(0,0,300,0);
     for (let i = 0; i < colors.length; i++) {
@@ -299,7 +299,7 @@ function initHueGrdH() {
     hueCtx.fillRect(0,0,300,300);
 }
 
-// Handle color conversion
+// ** Functions 'intToHex' and 'rgbToHex' ** Handle color conversion
 function intToHex(c) {
     let hex = c.toString(16);
     return hex.length == 1 ? '0' + hex : hex;
@@ -309,7 +309,7 @@ function rgbToHex (r, g, b) {
     return '#' + intToHex(r) + intToHex(g) + intToHex(b);
 }
 
-// Initialize shade gradient
+// ** Function 'initShadeGrd' ** Initializes shade gradient
 function initShadeGrd(color) {
     let grdH = shadeCtx.createLinearGradient(0,0,shadeCtx.canvas.width,0);
     grdH.addColorStop(0, '#fff');
@@ -323,7 +323,7 @@ function initShadeGrd(color) {
     shadeCtx.fillRect(0, 0, shadeCtx.canvas.width, shadeCtx.canvas.height);
 }
 
-// Set shade picker position and color
+// ** Function 'setShadePicker' ** Set shade picker position and color
 function setShadePicker() {
     let pkRect = shadePicker.getBoundingClientRect();
     let prRect = shadeParent.getBoundingClientRect();
@@ -346,7 +346,7 @@ function setShadePicker() {
     activeClr.style.backgroundColor = `${rgbToHex(data[0], data[1], data[2])}`;
 }
 
-// Set hue sliders positions
+// ** Functions 'setSldPos' and 'setSldPosH' ** Set hue sliders positions
 function setSldPos() {
     let hueRect = hueParent.getBoundingClientRect();
     let sldRect = huePicker.getBoundingClientRect();
@@ -369,7 +369,7 @@ function setSldPosH() {
     setShadePicker();
 }
 
-// Establish shade picker drag behavior
+// ** Anonymous function stored in variable 'drag' ** Establishes shade picker drag behavior
 const drag = (e) => {
     let parentRect = shadeParent.getBoundingClientRect(),
         x = e.clientX - parentRect.x,
@@ -405,7 +405,7 @@ const drag = (e) => {
     setShadePicker();
 }
 
-// Handle shade picker interactions
+// ** Function 'dragShade' ** Handles shade picker interactions
 function dragShade() {
     shadePicker.addEventListener('mousedown', function(e) {
         e.preventDefault();
@@ -416,8 +416,7 @@ function dragShade() {
     });
 }
 
-
-// Establish hue slider behavior
+// Annonymous function stored in constant 'slide' ** Establishes hue slider behavior
 const slide = (e) => {
     let hueRect = hueParent.getBoundingClientRect(),
         y = e.clientY - hueRect.y,
@@ -438,7 +437,7 @@ const slide = (e) => {
     setShadePicker();
 }
 
-// Handle hue slider interactions
+// ** Function 'slideHue' ** Handles hue slider interactions
 function slideHue() {
     huePicker.addEventListener('mousedown', function(e) {
         e.preventDefault();
@@ -449,7 +448,7 @@ function slideHue() {
     });
 }
 
-// Handle shade and hue canvases click events
+// ** Function 'clickSH' ** Handles shade and hue canvases click events
 function clickSH() {
     shadeCnv.addEventListener('click', function(e) {
         let x = e.offsetX - 8;
@@ -465,7 +464,7 @@ function clickSH() {
     });
 }
 
-// Handle horizontal hue slider behavior
+// Annonymous function stored in constant 'slideH' ** Handles horizontal hue slider behavior
 const slideH = (e) => {
     let hueRect = hueParent.getBoundingClientRect();
     let left = '' + ((e.clientX - hueRect.x - 3) / 300) * 100 + '%';
@@ -487,7 +486,7 @@ const slideH = (e) => {
     setShadePicker();
 }
 
-// Handle grid cells generation
+// ** Function 'genGrid' ** Handles grid cells generation
 function genGrid() {
     generate.addEventListener('click', () => {
         let pattern = new RegExp('^[1-9][0-9]?$|^100$');
@@ -511,10 +510,10 @@ function genGrid() {
     })
 }
 
-// Store grid cells
+// Stores grid cells
 let gridCells = [];
 
-// Create and append grid cells
+// ** Function 'mkCells' ** Creates and appends grid cells
 function mkCells(rows, columns) {
     grid.style.setProperty('--grid-rows', rows);
     grid.style.setProperty('--grid-columns', columns);
@@ -528,7 +527,7 @@ function mkCells(rows, columns) {
     }
 }
 
-// Handle grid cell background color reset
+// ** Function 'clearGrid' ** Handles grid cell background color reset
 function clearGrid() {
     clear.addEventListener('click', () => {
         console.log(gridCells);
@@ -539,7 +538,7 @@ function clearGrid() {
     });
 }
 
-// Handle grid area reset
+// ** Function 'resetGrid' ** Handles grid area reset
 function resetGrid() {
     reset.addEventListener('click', () => {
         cellNum.disabled = false;
@@ -555,7 +554,7 @@ function resetGrid() {
 // Store swatch colors
 let swatches = [];
 
-// Handle custom swatches
+// ** Function 'mkSwatches' ** Handles custom swatches
 function mkSwatches() {
     addSwatch.addEventListener('click', () => {
         let swatch = document.createElement('div');
@@ -575,7 +574,7 @@ function mkSwatches() {
     })
 }
 
-// Handle palette set switch
+// ** Function 'swapPalettes' ** Handles palette set switch
 function swapPalettes() {
     const btns = [customPlt, bit8, bit16];
     const sets = [pltCustom, plt8bit, plt16bit];
@@ -593,14 +592,14 @@ function swapPalettes() {
     }
 }
 
-// Handle legacy palette generation
+// ** Function 'mkLegPlt' ** Handles legacy palette generation
 function mkLegPlt() {
     mkContainers();
     mkPlt();
     mkLegSwatches();
 }
 
-// Handle custom swatch set container generation generation
+// ** Function 'mkContainers' ** Handles custom swatch set container generation
 function mkContainers() {
     for (let i = 0; i < 8; i++) {
         let cont = document.createElement('div');
@@ -612,7 +611,7 @@ function mkContainers() {
     }
 }
 
-// Populate swatch containers with palettes
+// ** Function 'mkPlt' ** Populates swatch containers with palettes
 function mkPlt() {
     const swatchConts = document.querySelectorAll('.swatch-container');
     for (e of swatchConts) {
@@ -624,7 +623,7 @@ function mkPlt() {
     }
 }
 
-// Store legacy swatch properties
+// ** Array 'swatchProps' ** Stores legacy swatch properties
 let swatchProps = [
     {
         id: 'tltx',
@@ -683,7 +682,7 @@ let swatchProps = [
     }
 ]
 
-// Create legacy swatches
+// ** Function 'mkLegSwatches' ** Creates legacy swatches
 function mkLegSwatches() {
     const palettes = Array.prototype.slice.call(document.querySelectorAll('.palette'));
     for (let i = 0; i < palettes.length; i++) {
@@ -712,7 +711,7 @@ function mkLegSwatches() {
     }
 }
 
-// Handle mode change
+// ** Function 'switchTools' ** Handles mode change
 function switchTools() {
     const tools = [];
     for (let i = 0; i < colorModes.length; i++) {
@@ -725,7 +724,7 @@ function switchTools() {
     }
 }
 
-// Handle grid cell coloration
+// ** Function 'colorCell' ** Handles grid cell coloration
 function colorCell(e) {
     if (clrMode.innerHTML === 'Solid') {
         e.target.style.backgroundColor = `${hexCode.innerHTML}`;
@@ -789,7 +788,7 @@ function colorCell(e) {
     }
 }
 
-// Convert rgb to HSL
+// ** Function 'rgbToHsl' ** Converts RGB to HSL colors
 function rgbToHsl(r, g, b) {
     r /= 255;
     g /= 255;
@@ -820,7 +819,7 @@ function rgbToHsl(r, g, b) {
     return [h, s, l];
 }
 
-// Handle linear coloring
+// ** Function 'linearClr' ** Handles linear coloring
 let initial = -1;
 function linearClr() {
     while (true) {
@@ -829,14 +828,14 @@ function linearClr() {
     } 
 }
 
-// Handle random coloring
+// ** Function 'randomClr' ** Handles random coloring
 function randomClr() {
     while (true) {
         return swatches[Math.floor(Math.random() * swatches.length)];
     }
 }
 
-// Handle description display inside information modal
+// ** Function 'toggleDesc' ** Handles description display inside information modal
 function toggleDesc() {
     let carets = [bioCaret, resCaret];
     let desc = [bioDesc, resDesc];
@@ -849,6 +848,6 @@ function toggleDesc() {
             } else {
                 desc[i].style.display = 'flex';
             }
-        })
+        });
     }
 }
