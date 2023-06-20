@@ -119,7 +119,7 @@ window.onload = (e) => {
 // Store arrays of parent buttons and image sources
 let btns = {
     name: [crayon, brush, wand, hard, soft, customPlt, toolProps, info, generate, clear, reset],
-    src: ['/img/crayon.svg', '/img/brush.svg', '/img/wand.svg', '/img/hard.svg', '/img/soft.svg', '/img/custom_swatch.svg', '/img/tool_properties.svg', '/img/information.svg', '/img/create.svg', '/img/clear.svg', 'img/reset.svg']
+    src: ['/img/crayon.svg', '/img/brush.svg', '/img/wand.svg', '/img/hard.svg', '/img/soft.svg', '/img/custom_swatch.svg', '/img/tool_properties.svg', '/img/information.svg', '/img/create.svg', '/img/clear.svg', '/img/reset.svg']
 };
 
 // Populate buttons with icons
@@ -554,6 +554,9 @@ function mkSwatches() {
         swatchHouse.appendChild(swatch).className = 'custom-swatch';
         swatch.addEventListener('click', () => {
             swatchHouse.removeChild(swatch);
+            for (let i = 0; i < swatches.length; i++) {
+                swatches.splice(i, 1);
+            }
         })
         swatch.style.backgroundColor = `${hexCode.innerText}`;
         swatch.style.width = '1rem';
