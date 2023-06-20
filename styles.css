@@ -179,8 +179,22 @@ h2 {
     height: 100%;
     width: 100%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
+}
+
+.showcase-left {
+    width: 33.33%;
+    flex: 1;
+}
+
+.showcase-right {
+    width: 33.33%;
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: hidden;
 }
 
 .info-modal,
@@ -410,7 +424,7 @@ li {
 }
 
 #properties-container {
-    margin: 0 0 0 2em;
+    margin: 0 1em 0 2em;
     height: 100%;
     width: 340px;
     display: flex;
