@@ -515,6 +515,7 @@ function mkCells(rows, columns) {
         let cell = document.createElement('div');
         cell.addEventListener('mouseover', colorCell);
         cell.addEventListener('mousedown', colorCell);
+        cell.style.cursor = 'crosshair';
         grid.appendChild(cell).className = 'grid-cell';
         gridCells.push(cell);
     }
