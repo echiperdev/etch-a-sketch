@@ -138,6 +138,20 @@ h2 {
     justify-content: center;
     align-items: center;
     gap: .5rem;
+    animation: downOut 200ms ease-in-out forwards;
+    transform-origin: center center;
+}
+
+@keyframes downOut {
+    0% {
+       transform: translateZ(40px) transLateY(15px)
+    }
+    80% {
+       transform: translateZ(-10px) transLateY(0px)
+    }
+    100% {
+       transform: translateZ(0px) transLateY(0px)
+    }
 }
 
 .btn:active {
@@ -430,6 +444,9 @@ li {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    animation: downOut 200ms ease-in-out forwards;
+    transform-origin: right center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .properties-box {
