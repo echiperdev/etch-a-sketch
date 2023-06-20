@@ -60,6 +60,10 @@ let plt16bit = document.querySelector('.palettes-16-bit');
 let alerts = document.querySelector('.alerts');
 let alertMsg = document.getElementById('alert-msg');
 let tabletWidth = window.matchMedia('(min-width: 821px)');
+let bioCaret = document.getElementById('bio-caret');
+let resCaret = document.getElementById('res-caret');
+let bioDesc = document.getElementById('bio-desc');
+let resDesc = document.getElementById('res-desc');
 
 // Store color mode characteristics
 const colorModes = [
@@ -114,6 +118,9 @@ window.onload = (e) => {
     swapPalettes();
     mkLegPlt();
     switchTools();
+    bioDesc.style.display = 'none';
+    resDesc.style.display = 'none';
+    toggleDesc();
 }
 
 // Store arrays of parent buttons and image sources
@@ -826,5 +833,22 @@ function linearClr() {
 function randomClr() {
     while (true) {
         return swatches[Math.floor(Math.random() * swatches.length)];
+    }
+}
+
+// Handle description display inside information modal
+function toggleDesc() {
+    let carets = [bioCaret, resCaret];
+    let desc = [bioDesc, resDesc];
+    for (let i = 0; i < carets.length; i++) {
+        carets[i].addEventListener('click', (e) => {
+            e.target.classList.toggle('fa-caret-down');
+            e.target.classList.toggle('fa-caret-up');
+            if (desc[i].style.display !== 'none') {
+                desc[i].style.display = 'none';
+            } else {
+                desc[i].style.display = 'flex';
+            }
+        })
     }
 }
