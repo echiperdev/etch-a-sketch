@@ -126,7 +126,7 @@ window.onload = (e) => {
 // ** Object initializer 'btns' ** Stores arrays of parent buttons and image sources
 let btns = {
     name: [crayon, brush, wand, hard, soft, customPlt, toolProps, info, generate, clear, reset],
-    src: ['./img/crayon.svg', './img/brush.svg', './img/wand.svg', './img/hard.svg', './img/soft.svg', './img/custom_swatch.svg', './img/tool_properties.svg', './img/information.svg', './img/create.svg', './img/clear.svg', './img/reset.svg']
+    src: ['img/crayon.svg', 'img/brush.svg', 'img/wand.svg', 'img/hard.svg', 'img/soft.svg', 'img/custom_swatch.svg', 'img/tool_properties.svg', 'img/information.svg', 'img/create.svg', 'img/clear.svg', 'img/reset.svg']
 };
 
 // ** Function 'mkBtns' ** Populates buttons with icons
