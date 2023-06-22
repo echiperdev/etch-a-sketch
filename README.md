@@ -73,3 +73,7 @@ The grid cell coloration itself is made possible through the 'colorCell' functio
 When MULTICOLOR mode is active, the user can choose to color linearly or randomly.
 
 Finally, the descriptions within the INFORMATION modal are toggled through the 'toggleDesc' function.
+
+### FUTURE DIRECTION
+
+Restructure the code focusing on an OOP approach and add mobile functionality.
